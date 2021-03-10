@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Introduce from '../../components/Introduce';
-
+import { useModal } from '../../context/modal';
 import { LandingContainer, Presentation, Content } from './styles';
 
 const Landing: React.FC = () => {
+  const { addModal } = useModal();
+
+  useEffect(() => {
+    addModal({
+      title: 'Bem vindo(a)',
+      subtitle: 'Este site ainda está em construção 👩‍💻👷‍♀️',
+      description: 'por Joao',
+    });
+  }, [addModal]);
+
   return (
     <>
       <LandingContainer>

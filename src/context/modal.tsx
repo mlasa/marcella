@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import ModalContainer from '../components/ModalContainer';
+import Modal from '../components/Modal';
 
 interface ModalContextType {
   closeModal(): void;
-  addMessage(message: Omit<Message, 'id'>): void;
+  addModal(message: Omit<Message, 'id'>): void;
 }
 
 export interface Message {
@@ -17,33 +17,35 @@ export interface Message {
 const ModalContext = createContext<ModalContextType>({} as ModalContextType);
 
 const ModalProvider: React.FC = ({ children }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isOpen, setIsOpen] = useState(true);
+  const [message, setMessage] = useState<Message>({} as Message);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const addMessage = ({
-    title,
-    subtitle,
-    description,
-  }: Omit<Message, 'id'>) => {
-    const id = uuid();
-    const message = {
-      id,
-      title,
-      subtitle,
-      description,
-    };
+  const addModal = useCallback(
+    ({ title, subtitle, description }: Omit<Message, 'id'>) => {
+      const id = uuid();
+      const newMessage = {
+        id,
+        title,
+        subtitle,
+        description,
+      };
 
-    setMessages([...messages, message]);
-  };
+      setMessage(newMessage);
+      setIsOpen(true);
+    },
+    [setMessage],
+  );
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
+    console.log('click');
     setIsOpen(false);
-  };
+    setMessage({} as Message);
+  }, [setMessage]);
 
   return (
-    <ModalContext.Provider value={{ closeModal, addMessage }}>
+    <ModalContext.Provider value={{ closeModal, addModal }}>
       {children}
-      {isOpen && <ModalContainer messages={messages} />}
+      {isOpen && <Modal message={message} />}
     </ModalContext.Provider>
   );
 };
