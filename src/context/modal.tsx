@@ -1,20 +1,28 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import Modal from '../components/Modal';
 
-// interface ModalContextType { }
+interface ModalContextType {
+  closeModal: () => void;
+}
 
-const ModalContext = createContext({});
+const ModalContext = createContext<ModalContextType>({} as ModalContextType);
 
 const ModalProvider: React.FC = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <ModalContext.Provider value={{}}>
+    <ModalContext.Provider value={{ closeModal }}>
       {children}
-      <Modal />
+      {isOpen && <Modal />}
     </ModalContext.Provider>
   );
 };
 
-const useModal = () => {
+const useModal = (): ModalContextType => {
   const modalContext = useContext(ModalContext);
   if (!modalContext) {
     throw new Error('O hook useModal deve ser usado dentro do ModalProvider');

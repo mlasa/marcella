@@ -1,11 +1,9 @@
 import React from 'react';
-import { useModal } from '../../context/modal';
 import Introduce from '../../components/Introduce';
 
 import { LandingContainer, Presentation, Content } from './styles';
 
 const Landing: React.FC = () => {
-  useModal();
   return (
     <>
       <LandingContainer>

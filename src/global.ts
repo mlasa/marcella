@@ -4,8 +4,11 @@ export default createGlobalStyle`
   :root{
     --white: #fff;
     --background: #181818;
+    --gray: #e6e6e6;
     --red: #FA4447;
-    --black: #000;
+    --primaryTitle: #303030;
+    --secondaryTitle: #3d3d3d;
+    --text: #474747;
   };
 
   @media(max-width: 1080px) {
@@ -40,5 +43,6 @@ export default createGlobalStyle`
   }
   button{
     cursor:pointer;
+    border-radius: 5px;
   }
 `;
