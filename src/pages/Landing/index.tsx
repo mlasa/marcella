@@ -10,7 +10,7 @@ const Landing: React.FC = () => {
     addModal({
       title: 'Bem vindo(a)',
       subtitle: 'Este site ainda está em construção 👩‍💻👷‍♀️',
-      description: 'por Joao',
+      description: 'por Marcella Letícia A.S.A.',
     });
   }, [addModal]);
 
