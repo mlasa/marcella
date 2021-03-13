@@ -26,7 +26,7 @@ export const ModalContainer = styled.div`
   header {
     font-size: 2.5rem;
     font-weight: 600;
-    color: var(--primaryTitle);
+    color: var(--primaryDark);
     margin-bottom: 10px;
     background: url('/icons/levelup.svg') no-repeat center;
     background-size: contain;

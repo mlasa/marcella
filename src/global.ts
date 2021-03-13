@@ -3,17 +3,17 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
   :root{
     --white: #fff;
-    --background: #181818;
+    --background: #242424;
     --gray: #e6e6e6;
-    --red: #FA4447;
-    --primaryTitle: #303030;
-    --secondaryTitle: #3d3d3d;
-    --text: #474747;
+    --orange: #fc9803;
+    --primaryDark: #303030;
+    --primaryLight: #f5f5f5;
   };
 
   @media(max-width: 1080px) {
     html{
       font-size: 93.75%;
+      // scroll-behavior: smooth;
     }
   }
   *{
@@ -23,9 +23,9 @@ export default createGlobalStyle`
     outline:0;
   }
   body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: sans-serif;
     background: var(--background);
-    color: var(--white);
+    color: var(--primaryDark);
     -webkit-font-smoothing:antialiased;
 
     width: 100vw;
