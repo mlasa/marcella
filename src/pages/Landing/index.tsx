@@ -3,8 +3,9 @@ import { useModal } from '../../context/modal';
 import { LandingPage, FixedContainer, Content } from './styles';
 import Header from '../../components/Header';
 import About from '../../components/About';
-import Presentation from '../../components/Presentation';
+import Presentation from '../../components/Present';
 import Skills from '../../components/Skills';
+import Footer from '../../components/Footer';
 
 const Landing: React.FC = () => {
   const { addModal } = useModal();
@@ -21,7 +22,7 @@ const Landing: React.FC = () => {
     <>
       <LandingPage>
         <FixedContainer>
-          <Header />
+          {/* <Header /> */}
           <div>
             <h1>Marcella Amorim S.A.</h1>
           </div>
@@ -30,6 +31,7 @@ const Landing: React.FC = () => {
           <Presentation />
           <About />
           <Skills />
+          <Footer />
         </Content>
       </LandingPage>
     </>

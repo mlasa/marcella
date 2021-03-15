@@ -16,6 +16,7 @@ export const HeaderContainer = styled.header`
   a {
     padding: 10px;
     text-align: center;
+    font-family: 'Fira Code', monospace;
     transition: background 0.3s;
   }
   a:hover {

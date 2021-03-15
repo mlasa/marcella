@@ -3,27 +3,28 @@ import styled from 'styled-components';
 export const AboutContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  color: var(--primaryLight);
+  color: var(--primaryDark);
 
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   h1 {
-    font-family: 'Patua One', cursive;
+    font-family: 'Fira Code', monospace;
     font-size: 30px;
     margin-bottom: 30px;
-    padding: 0 20px 0 20px;
+    padding: 20px 20px;
   }
   div {
     p {
-      font-family: 'Roboto Condensed', sans-serif;
+      font-family: 'Lato', sans-serif;
       font-size: 20px;
-      font-weight: 300;
+      font-weight: 400;
       text-align: justify;
+      color: var(--primaryDark);
 
       line-height: 1.4;
-      padding: 0 20px 0 20px;
+      padding: 15px 10px;
 
       & + p {
         margin-top: 10px;

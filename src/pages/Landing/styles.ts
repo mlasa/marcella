@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import BackgroundImg from '../../assets/keyboardDark.jpg';
 
 export const LandingPage = styled.div`
   display: grid;
@@ -15,14 +16,19 @@ export const LandingPage = styled.div`
 `;
 
 export const FixedContainer = styled.section`
+  background: url(${BackgroundImg}) no-repeat center;
+  background-size: cover;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
-  background: var(--background);
-  color: var(--primaryLight);
+  @media (max-width: 1170px) {
+    & {
+      display: none;
+    }
+  }
 
   div {
     flex: 1;
@@ -30,9 +36,10 @@ export const FixedContainer = styled.section`
     align-items: center;
   }
   h1 {
-    font-family: 'Patua One', cursive;
+    font-family: 'Fira Code', monospace;
     font-size: 55px;
-
+    padding: 20px;
+    color: var(--primaryLight);
     width: 360px;
   }
 `;

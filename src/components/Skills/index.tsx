@@ -1,4 +1,16 @@
 import React from 'react';
+import {
+  DiChrome,
+  DiGit,
+  DiCss3,
+  DiHtml5,
+  DiReact,
+  DiNodejs,
+  DiJsBadge,
+  DiUbuntu,
+} from 'react-icons/di';
+import { SiTypescript, SiVisualstudio } from 'react-icons/si';
+
 import { SkillsContainer } from './styles';
 
 const About: React.FC = () => {
@@ -6,25 +18,26 @@ const About: React.FC = () => {
     <SkillsContainer>
       <h1>Skills</h1>
       <div>
-        <p>
-          Olá! Meu nome é Marcella, tenho 23 anos e sou de Campinas - SP. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <span>
+          <strong>Ferramentas</strong>
+          <div>
+            <DiUbuntu size={50} />
+            <DiChrome size={50} />
+            <DiGit size={50} />
+            <SiVisualstudio size={50} />
+          </div>
+        </span>
+        <span>
+          <strong>Tecnologias</strong>
+          <div>
+            <DiCss3 size={50} />
+            <DiHtml5 size={50} />
+            <DiJsBadge size={45} />
+            <SiTypescript size={45} />
+            <DiReact size={50} />
+            <DiNodejs size={70} />
+          </div>
+        </span>
       </div>
     </SkillsContainer>
   );
