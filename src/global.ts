@@ -3,11 +3,11 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
   :root{
     --white: #fff;
-    --background: #242424;
-    --gray: #e6e6e6;
-    --orange: #fc9803;
-    --primaryDark: #303030;
-    --primaryLight: #f5f5f5;
+    --gray-light: #A8A7A7;
+    --main-pink: #E8175D;
+    --secondary-pink: #CC527A;
+    --main-dark: #363636;
+    --secondary-dark: #474747;
   };
 
   @media(max-width: 1080px) {

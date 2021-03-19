@@ -5,7 +5,8 @@ export const SkillsContainer = styled.div`
   background: var(--background);
   width: 100%;
   min-height: 100vh;
-  color: var(--primaryLight);
+  color: var(--white);
+  background: var(--main-dark);
 
   display: flex;
   flex-direction: column;

@@ -33,14 +33,26 @@ export const FixedContainer = styled.section`
   div {
     flex: 1;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
   }
   h1 {
     font-family: 'Fira Code', monospace;
-    font-size: 55px;
+    font-size: 4rem;
     padding: 20px;
-    color: var(--primaryLight);
+    color: var(--white);
     width: 360px;
+    word-wrap: break-word;
+  }
+  p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--white);
+    background: var(--main-pink);
+    padding: 0 13px;
+    text-align: center;
   }
 `;
 

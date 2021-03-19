@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useModal } from '../../context/modal';
 import { LandingPage, FixedContainer, Content } from './styles';
-import Header from '../../components/Header';
+// import Header from '../../components/Header';
 import About from '../../components/About';
 import Presentation from '../../components/Present';
 import Skills from '../../components/Skills';
@@ -25,6 +25,7 @@ const Landing: React.FC = () => {
           {/* <Header /> */}
           <div>
             <h1>Marcella Amorim S.A.</h1>
+            <p>Programadora Front-End</p>
           </div>
         </FixedContainer>
         <Content>

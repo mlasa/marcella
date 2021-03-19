@@ -3,43 +3,42 @@ import styled from 'styled-components';
 export const PresentationContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  color: var(--primaryLight);
-  background: var(--background);
+  color: var(--white);
+  background: var(--main-dark);
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  svg:hover {
-    color: var(--orange);
+  button {
+    background: var(--main-pink);
+    border: none;
+    padding: 10px;
+    border-radius: 50px;
+    height: 45px;
+    width: 200px;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 600;
   }
 
-  span {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  h1 {
+    font-family: 'Fira Code', monospace;
+    font-size: 55px;
     text-align: center;
-
+    word-wrap: break-word;
     @media (max-width: 1000px) {
-      > svg {
-        display: none;
+      & {
+        width: 15rem;
       }
     }
 
-    h1 {
-      font-family: 'Fira Code', monospace;
-      font-size: 55px;
-      align-items: center;
-    }
-    & + svg {
-      margin-top: 20px;
+    svg {
+      margin-right: 8px;
     }
   }
 `;

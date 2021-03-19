@@ -3,7 +3,7 @@ import { AboutContainer } from './styles';
 
 const About: React.FC = () => {
   return (
-    <AboutContainer>
+    <AboutContainer id="about">
       <h1>Sobre Mim</h1>
       <div>
         <p>Olá! Meu nome é Marcella, tenho 23 anos e sou de Campinas - SP.</p>

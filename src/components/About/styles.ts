@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const AboutContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  color: var(--primaryDark);
+  color: var(--white);
+  background: var(--main-dark);
 
   display: flex;
   flex-direction: column;
@@ -21,10 +22,9 @@ export const AboutContainer = styled.div`
       font-size: 20px;
       font-weight: 400;
       text-align: justify;
-      color: var(--primaryDark);
 
       line-height: 1.4;
-      padding: 15px 10px;
+      padding: 15px 40px;
 
       & + p {
         margin-top: 10px;
