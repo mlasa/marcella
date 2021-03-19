@@ -2,38 +2,46 @@ import styled from 'styled-components';
 import BackgroundImg from '../../assets/keyboardDark.jpg';
 
 export const SkillsContainer = styled.div`
-  background: var(--background);
   width: 100%;
   min-height: 100vh;
-  color: var(--white);
-  background: var(--main-dark);
+  background: var(--white);
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 
   h1 {
     font-family: 'Fira Code', monospace;
     font-size: 30px;
-    margin-bottom: 30px;
-    padding: 20px 20px;
+    margin: 30px;
+    padding: 0px 10px;
+    background: var(--main-dark);
+    color: var(--white);
   }
-  div {
+  > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     span {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 30px;
-
+      & + span {
+        margin-top: 30px;
+      }
       strong {
         font-family: 'Lato', sans-serif;
         font-size: 20px;
         font-weight: 400;
-        line-height: 1.4;
-        padding: 0 20px 0 20px;
+        line-height: 2;
+        text-align: center;
+        display: block;
+
+        background: var(--main-pink);
+        color: var(--white);
       }
       svg {
         margin: 20px 8px;
+        color: var(--main-dark);
       }
     }
   }

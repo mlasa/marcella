@@ -6,6 +6,7 @@ export default createGlobalStyle`
     --gray-light: #A8A7A7;
     --main-pink: #E8175D;
     --secondary-pink: #CC527A;
+    --dark-pink: #c73448;
     --main-dark: #363636;
     --secondary-dark: #474747;
   };

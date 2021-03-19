@@ -32,7 +32,7 @@ export const FooterContainer = styled.footer`
   span {
     text-align: center;
     align-self: center;
-    background: var(--secondary-pink);
+    background: var(--main-pink);
     margin-top: 20px;
     width: 10rem;
     font-size: 20px;

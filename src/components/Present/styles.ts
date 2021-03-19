@@ -25,6 +25,9 @@ export const PresentationContainer = styled.div`
     font-size: 20px;
     font-weight: 600;
   }
+  button:hover {
+    background: var(--dark-pink);
+  }
 
   h1 {
     font-family: 'Fira Code', monospace;
