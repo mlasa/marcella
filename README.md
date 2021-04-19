@@ -6,6 +6,3 @@
 ![Tela inicial](https://imgur.com/anEwcg7.png)
 ![Tela inicial](https://imgur.com/lPilZJn.png)
 
-
-
-## 👉  Hospedado em : http://marcella.vercel.app
