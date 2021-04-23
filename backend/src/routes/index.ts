@@ -3,6 +3,24 @@ import postsController from '../controllers/PostsController'
 
 const router = Router()
 
+router.get('/posts', async (request, response) => {
+  const { limit, page, fields, orderBy, sortBy, keyWord } = request.query
+
+  const filterParams = {
+    limit: Number(limit) || 3,
+    page: Number(page) || 1,
+    fields: fields || null,
+    orderBy: orderBy || 'publishedAt',
+    sortBy: sortBy !== undefined ? Number(sortBy) : 0,
+    keyWord: keyWord || null,
+  }
+
+
+  const results = await postsController.search(filterParams)
+
+  return response.status(200).json(results)
+})
+
 router.post('/posts', async (request, response) => {
   const { title, text, author, labels } = request.body;
 
