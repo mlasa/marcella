@@ -1,13 +1,12 @@
-import express from 'express';
-import connectToDB from './utils/connectToDB';
+import express from 'express'
+import connectToDB from './utils/connectToDB'
+import router from './routes/index'
 
-const app = express();
-//app.use(express.urlencoded({ extended: false }));
-//app.use(express.json());
+const app = express()
+app.use(express.urlencoded({ extended: false })) //poder pegar parametros da url
+app.use(express.json())
 
-connectToDB();
-app.get('/', (request, response) => {
-  return response.json({ alive: true })
-})
+connectToDB()
+app.use(router)
 
 app.listen(3333, () => console.log("I'm alive! 🤖 --> http://localhost:3333"))
