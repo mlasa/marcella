@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 @media(max-width: 1080px){
   html{
@@ -20,13 +21,16 @@ body{
   background-color:var(--gray-50);
 }
 body, input, textarea, button{
-  /*font: 500 1rem Inter, sans-serif;*/
+  font-family: 'Inter', sans-serif;
   color: var(--gray-500);
 }
 h1,h2,h3,h4,h5,h6{
   font-weight: 600;
-  /*font-family: Lexend, sans-serif;*/
+  font-family: 'Merriweather Sans', sans-serif;
   color: var(--gray-800);
+}
+a:hover{
+  color:#ec86ca;
 }
 h1{
   font-size: 2rem;
