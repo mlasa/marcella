@@ -1,15 +1,27 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useState } from 'react'
 import styles from '../styles/Home.module.scss'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
+import { FiSun, FiMoon } from 'react-icons/fi'
+import Checkbox from '../components/Checkbox'
+import { useTheme } from '../hooks/theme'
 
 export default function Home() {
+  const { isDarkTheme, setIsDarkTheme } = useTheme()
   return (
     <>
       <Head>
         <title>Marcella L.A.S.A.</title>
       </Head>
+
       <div className={styles.container}>
+        <span >
+          {
+            isDarkTheme ? <Checkbox classCheckBox={styles.checkBoxComponent} icon={FiMoon} action={() => setIsDarkTheme(!isDarkTheme)} /> :
+              <Checkbox classCheckBox={styles.checkBoxComponent} icon={FiSun} action={() => setIsDarkTheme(!isDarkTheme)} />
+          }
+        </span>
         <div>
           <div className={styles.me}>
             <img src="https://avatars.githubusercontent.com/u/43733159?s=400&u=44809dcf2f7daef870a8404e63973b5519be6a5a&v=4" alt="Foto de Marcella" />
@@ -38,7 +50,7 @@ export default function Home() {
             </Link>
           </span>
         </div>
-      </div>
+      </div >
     </>
   )
 }
