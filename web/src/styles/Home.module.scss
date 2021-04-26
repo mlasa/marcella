@@ -1,3 +1,4 @@
+@import './themes/index.scss';
 
 .container{
   .checkBoxComponent{
@@ -6,13 +7,19 @@
     align-items: center;
     svg{
       margin-right: 5px;
-      margin-left: auto;
+    }
+    @media (max-width:434px) {
+        &{
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1rem;
+        }
     }
   }
 
-
-  background: var(--background);
-  color: var(--text);
+  transition: 0.2s color,background;
+  @include themify('background', 'first');
+  @include themify('color', 'second');
   min-height: 100vh;
   height: 100%;
   padding: 4rem;
@@ -29,27 +36,60 @@
 
     gap:1rem;
 
+    div{
+      display: flex;
+      flex-wrap: wrap;
+      @media (max-width:434px) {
+        strong + strong{
+          margin-top: 8px;
+        }
+      }
+
+      strong{
+        color:#FBF5F3;
+        @include themify('background', 'fourth');
+        padding: 4px;
+        border-radius: 5px;
+
+        & + strong{
+          margin-left: 8px;
+        }
+      }
+    }
+
     h2{
       text-align: center;
+      @include themify('color', 'fourth');
     }
     span{
       display: flex;
       justify-content: center;
+      border-radius: 10px;
       p{
-        max-width:70%;
-        min-width:30%;
+        max-width:80%;
+        min-width:40%;
         margin: 0 2rem 0 2rem;
         text-align: center;
 
         font-size: 1.1rem;
         line-height: 1.5rem;
+        @media (max-width:434px) {
+        &{
+          text-align: justify;
+        }
+      }
       }
     }
     img{
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      border: 8px solid var(--text);
+      @media (max-width:434px) {
+        &{
+          width: 100px;
+          height: 100px;
+        }
+    }
     }
   }
   
@@ -59,8 +99,22 @@
     display: flex;
     justify-content: center;
 
+    
+    @media (max-width:434px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      strong + strong{
+        margin-top: 8px;
+      }
+    }
+
     strong{
       transition: 0.2s color;
+      & + strong{
+        margin-left: 20px;
+      }
     }
 
     svg{
@@ -70,13 +124,11 @@
     }
 
     svg:hover, strong:hover{
-      color: var(--hover);
+     @include themify('color', 'third');
       cursor: pointer;
     }
 
-    strong + strong{
-      margin-left: 20px;
-    }
+    
   }
   
 }

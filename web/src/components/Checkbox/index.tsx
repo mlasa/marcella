@@ -19,7 +19,7 @@ const Checkbox: React.FC<CheckBoxProps> = ({ icon: Icon, ...rest }) => {
     <div className={rest.classCheckBox} >
       {Icon && <Icon size={25} />}
       <label className={styles.switch} >
-        <input type="checkbox" checked={isChecked}onClick={() => doAction()} />
+        <input type="checkbox" checked={isChecked} onClick={() => doAction()} />
         <span />
       </label>
     </div>
