@@ -7,7 +7,7 @@ import Checkbox from '../components/Checkbox'
 import { useTheme } from '../hooks/theme'
 
 export default function Home() {
-  const { changeThemeColor, isDarkTheme, setIsDarkTheme, globalTheme } = useTheme()
+  const { changeThemeColor, globalTheme } = useTheme()
   return (
     <>
       <Head>
@@ -17,7 +17,7 @@ export default function Home() {
       <div className={`${styles.container} ${styles[globalTheme]}`}>
         <span >
           {
-            isDarkTheme ? <Checkbox classCheckBox={styles.checkBoxComponent} icon={FiMoon} action={() => changeThemeColor()} /> :
+            globalTheme === 'dark' ? <Checkbox classCheckBox={styles.checkBoxComponent} icon={FiMoon} action={() => changeThemeColor()} /> :
               <Checkbox classCheckBox={styles.checkBoxComponent} icon={FiSun} action={() => changeThemeColor()} />
           }
         </span>
@@ -39,7 +39,7 @@ export default function Home() {
               </p>
             </span>
           </div>
-          <span className={styles.socialNetwork}>
+          <span className={`${styles.socialNetwork} ${styles[globalTheme]}`}>
             <Link href="https://www.linkedin.com/in/marcellaamorim/">
               <strong className={`${styles[globalTheme]}`}>
                 <AiFillLinkedin size={30} />
