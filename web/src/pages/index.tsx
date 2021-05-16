@@ -1,13 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from '../styles/Home.module.scss'
+import styles from '../styles/home.module.scss'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
-import { FiSun, FiMoon } from 'react-icons/fi'
-import CustomCheckbox from '../components/CustomCheckbox'
 import { useTheme } from '../hooks/theme'
 
 export default function Home() {
-  const { changeThemeColor, globalTheme } = useTheme()
+  const { globalTheme } = useTheme()
   return (
     <>
       <Head>
