@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from '../styles/Home.module.scss'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 import { FiSun, FiMoon } from 'react-icons/fi'
-import Checkbox from '../components/Checkbox'
+import CustomCheckbox from '../components/CustomCheckbox'
 import { useTheme } from '../hooks/theme'
 
 export default function Home() {
@@ -15,12 +15,6 @@ export default function Home() {
       </Head>
 
       <div className={`${styles.container} ${styles[globalTheme]}`}>
-        <span >
-          {
-            globalTheme === 'dark' ? <Checkbox classCheckBox={styles.checkBoxComponent} icon={FiMoon} action={() => changeThemeColor()} /> :
-              <Checkbox classCheckBox={styles.checkBoxComponent} icon={FiSun} action={() => changeThemeColor()} />
-          }
-        </span>
         <div>
           <div className={styles.me}>
             <img

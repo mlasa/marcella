@@ -16,13 +16,15 @@ const Checkbox: React.FC<CheckBoxProps> = ({ icon: Icon, ...rest }) => {
   }
 
   return (
-    <div className={rest.classCheckBox} >
-      {Icon && <Icon size={25} />}
-      <label className={styles.switch} >
-        <input type="checkbox" checked={isChecked} onClick={() => doAction()} />
-        <span />
-      </label>
-    </div>
+    <span>
+      <div className={rest.classCheckBox} >
+        {Icon && <Icon size={25} />}
+        <label className={styles.switch} >
+          <input type="checkbox" checked={isChecked} onClick={() => doAction()} />
+          <span />
+        </label>
+      </div>
+    </span>
   )
 }
 export default Checkbox
