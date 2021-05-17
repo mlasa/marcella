@@ -26,9 +26,14 @@
         flex-direction: column;
       }
 
+      strong:nth-child(odd){
+        @include themify('background', 'first');
+      }
+      strong:nth-child(even){
+        @include themify('background', 'secondary');
+      }
       strong{
-        color:#FBF5F3;
-        @include themify('background', 'auxiliary');
+        @include themify('color', 'second-text');
         padding: 4px;
         border-radius: 5px;
 
@@ -46,7 +51,7 @@
 
     h2{
       text-align: center;
-      @include themify('color', 'auxiliary');
+      @include themify('color', 'first');
     }
     span{
       display: flex;
@@ -112,7 +117,7 @@
     }
 
     svg:hover, strong:hover{
-     @include themify('color', 'secondary');
+     @include themify('color', 'second-text');
       cursor: pointer;
     }    
   }  
