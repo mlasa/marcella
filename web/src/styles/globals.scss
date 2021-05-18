@@ -41,14 +41,14 @@ li{
 }
 body{
   min-width: 274px;
-  background:pink;
-
-    height:100vh;
-    min-height: 100%;
+  background:rgb(255, 246, 247);
+  
+  min-height: 574px;
 
 }
 .page{
-  min-height: 100vh;
+  height:100vh;
+  min-height: 100%;
 
   @media (min-width:350px) {
     height:100vh;
