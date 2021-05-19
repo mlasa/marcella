@@ -1,4 +1,10 @@
+
+
 *{
+  --gray-100:#f3f3f3;
+  --gray-200:#d4d1d1;
+  --blue-600:#1f3d57;
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -40,8 +46,8 @@ li{
   list-style-type: none;
 }
 body{
-  min-width: 274px;
-  background:rgb(187, 84, 96);
+  min-width: 297px;
+  background:rgb(13, 16, 20);
   
   min-height: 471px;
 
