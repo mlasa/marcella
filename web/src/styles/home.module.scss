@@ -1,11 +1,14 @@
 @import './themes/index.scss';
-
+// @import  from '/public/blue-bg.jpg'
 .container{
+  background: url('../../public/blue-bg.jpg') no-repeat center;
+  background-size: cover;
   transition: 0.9s background-color;
-  @include themify('background', 'main');
+  // @include themify('background', 'main');
   @include themify('color', 'text');
   height:100%;
   max-height: 100%;
+  min-height: 100%;
   
   display: flex;
   flex-direction: column;
@@ -37,10 +40,10 @@
       }
 
       strong:nth-child(odd){
-        @include themify('background', 'first');
+        @include themify('background', 'aux-first');
       }
       strong:nth-child(even){
-        @include themify('background', 'secondary');
+        @include themify('background', 'aux-secondary');
       }
       strong{
         @include themify('color', 'second-text');
@@ -61,7 +64,7 @@
 
     h2{
       text-align: center;
-      @include themify('color', 'first');
+      @include themify('color', 'aux-first');
     }
     span{
       display: flex;
@@ -109,6 +112,11 @@
          display: none;
         }
       }
+      @media (max-width:274px) {
+        &{
+         display: none;
+        }
+      }
     }
   }
   
@@ -126,6 +134,10 @@
     }
 
     strong{
+      &:hover{
+        @include themify('color', 'aux-secondary');
+      }
+
       & + strong{
         margin-left: 20px;
       }
