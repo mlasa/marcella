@@ -1,11 +1,15 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import {useState} from 'react'
 import styles from '../styles/home.module.scss'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 import { useTheme } from '../hooks/theme'
 
+const cv_url = 'https://drive.google.com/file/d/1-B8H3DQmX2IH7Xm-SbmyZyw_Vqr5juZ2/view?usp=sharing'
+
 export default function Home() {
   const { globalTheme } = useTheme()
+
   return (
     <>
       <Head>
@@ -30,6 +34,9 @@ export default function Home() {
                   Meu foco tem sido em desenvolvimento web, mais especificamente com ReactJS e NodeJS, e coloco meus estudos em prática com projetos,
                   que eu coloco no meu GitHub.
                 </p>
+                <strong className={`${styles[globalTheme]}`}>
+                  <a href={cv_url} rel="external">Baixar currículo em PDF</a>
+                </strong>
               </span>
             </div>
             <span className={`${styles.socialNetwork} ${styles[globalTheme]}`}>

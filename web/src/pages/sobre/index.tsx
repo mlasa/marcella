@@ -5,7 +5,8 @@ function About() {
   const { globalTheme } = useTheme()
   return (
     <div className={`${styles.aboutContainer} ${styles[globalTheme]}`}>
-      <h1>Sobre</h1>
+      <h2>Em breve, nesta página ficarão mais informações sobre mim.</h2>
+      <strong>-- Marcella 👩‍💻</strong>
     </div>
   )
 }

@@ -21,26 +21,30 @@ interface ProjectsProps{
 }
 
 export default function Projects(props: ProjectsProps) {
-  const [repos, setRepos] = useState<Repository[]>(() => {
+  /*const [repos, setRepos] = useState<Repository[]>(() => {
     if (typeof window !== "undefined") {    
       const storagedRepositories =  localStorage.getItem('@Marcella:repositories')
       
       if(storagedRepositories){
+        localStorage.removeItem('@Marcella:repositories')
         return JSON.parse(storagedRepositories)
+      }
+      else if(props.repositories){
+        return props.repositories
       }
       return []
     }
     return []
-  })
+  })*/
+  const [repos, setRepos] = useState<Repository[]>(props.repositories)
   const { globalTheme } = useTheme()
-  //const {repositories} = props
 
   
   useEffect(() => {
     localStorage.setItem('@Marcella:repositories', JSON.stringify(repos));
   }, [repos]);
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     const newRepo = {
       description: 'Portfólio sendo construído com react, next e sass. Está servindo também como aprendizado de novas tecnologias, que para mim são next e o sass especificamente.',
       name:'marcella',
@@ -50,15 +54,15 @@ export default function Projects(props: ProjectsProps) {
     }
     
     setRepos([...repos, newRepo])
-  },[])
+  },[]) */
 
   return (
     <div className={`${styles.projectsContainer} ${styles[globalTheme]}`}>
-      <section>
+      <section className={`${styles[globalTheme]}`}>
         {
           repos.map(repo =>{
             return(
-              <Link href={repo.html_url}>
+              <Link key={repo.html_url} href={repo.html_url}>
                 <div className={`${styles.repository} ${styles[globalTheme]}`}>
                   <div className={styles.repoInfo}>
                     <h3>{repo.name}</h3>
@@ -107,7 +111,7 @@ export const getServerSideProps:GetServerSideProps = async (ctx)=> {
       description: 'Portfólio sendo construído com react, next e sass. Está servindo também como aprendizado de novas tecnologias, que para mim são next e o sass especificamente.',
       name:'marcella',
       updated_at: '2021-05-19T11:42:35Z',
-      html_url:'2021-05-19T11:42:35Z',
+      html_url:'https://github.com/mlasa/marcella',
       topics: ['react', 'nodejs', 'sass', 'mongodb', 'nextjs']
     }]
 
