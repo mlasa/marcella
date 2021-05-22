@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import {useState} from 'react'
 import styles from '../styles/home.module.scss'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 import { useTheme } from '../hooks/theme'
@@ -18,7 +17,6 @@ export default function Home() {
 
       <div className={`${styles.container} ${styles[globalTheme]}`}>
         <div className={`${styles.main} ${styles[globalTheme]}`}>
-          <div>
             <div className={styles.me}>
               <img
                 src="https://avatars.githubusercontent.com/u/43733159?s=400&u=44809dcf2f7daef870a8404e63973b5519be6a5a&v=4"
@@ -54,8 +52,7 @@ export default function Home() {
               </Link>
             </span>
           </div>
-        </div>
-      </div >
+      </div>
     </>
   )
 }
