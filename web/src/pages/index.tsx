@@ -4,7 +4,7 @@ import styles from '../styles/home.module.scss'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 import { useTheme } from '../hooks/theme'
 
-const cv_url = 'https://drive.google.com/file/d/1-B8H3DQmX2IH7Xm-SbmyZyw_Vqr5juZ2/view?usp=sharing'
+const cv_url = 'https://drive.google.com/file/d/13UHbesyOFs5DfysuoakLykZblEV2UrMN/view?usp=sharing'
 
 export default function Home() {
   const { globalTheme } = useTheme()
