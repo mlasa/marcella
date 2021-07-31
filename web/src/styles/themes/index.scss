@@ -7,9 +7,9 @@ $themes: (
 );
 
 @mixin themify($property, $key) {
-  @each $theme, $color in $themes {
+  @each $theme, $colorMap in $themes {
     &.#{$theme} {
-      #{$property}: map-get($color, $key);
+      #{$property}: map-get($colorMap, $key);
     }
   }
 }
