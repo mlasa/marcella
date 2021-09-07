@@ -1,7 +1,8 @@
 import { Router } from 'express'
-import postsRouter from './posts';
-import profileRouter from './profile';
-import sessionRouter from './session';
+import postsRouter from './posts'
+import profileRouter from './profile'
+import sessionRouter from './session'
+import userRouter from './user'
 
 const router = Router()
 
@@ -13,6 +14,7 @@ router.get('/', async (request, response) => {
 router.use('/posts', postsRouter)
 router.use('/profile', profileRouter)
 router.use('/session', sessionRouter)
+router.use('/user', userRouter)
 
 
 export default router
