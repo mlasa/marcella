@@ -8,11 +8,7 @@ Disponível em : http://marcella.vercel.app
 - MongoDB
 
 
-<strong>Front end</st### APIs
-- Criar postagens, deletar, e buscar
-- Criar perfis de usuários
-- Atualizar informações da tela inicial
-rong>
+<strong>Front end</strong>
 - React.js
 - Next.js
 - Sass
@@ -28,6 +24,6 @@ Sendo que o sass e o next são tecnologias que estou utilizando com o objetivo d
 - Atualizar informações da tela inicial
 
 
-<strong>Back end</strong>
+<strong>Front end</strong>
 - Tela inicial
 - Aba sobre projetos
