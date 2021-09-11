@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from '../styles/home.module.scss'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
+import { Button, ButtonGroup } from "@chakra-ui/react"
+
+
 import { useTheme } from '../hooks/theme'
+import styles from '../styles/home.module.scss'
 
 const cv_url = 'https://drive.google.com/file/d/1abSMIAyU9txgVDb8MTBaTq_HKNkABolP/view?usp=sharing'
 
@@ -60,8 +63,6 @@ export async function getStaticProps() {
 
   const response = await fetch('https://mypagemlasa.herokuapp.com/profile', { method: "GET" })
   const data = await response.json()
-
-  console.log(data)
 
   return {
     props: {
