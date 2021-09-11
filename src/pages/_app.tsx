@@ -12,9 +12,7 @@ const MyApp = ({ Component, pageProps }) => {
     <HookProviders>
       <div className="page">
         <Header class="header">
-          <Link href="/">Início</Link>
-          <Link href="sobre">Sobre</Link>
-          <Link href="projetos">Projetos</Link>
+          {/*<Link href="/">Início</Link>*/}
         </Header>
         <div className="content">
           <Component {...pageProps} changeTheme={LIGHT_THEME} />

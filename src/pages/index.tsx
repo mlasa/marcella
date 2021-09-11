@@ -61,8 +61,6 @@ export async function getStaticProps() {
   const response = await fetch('https://mypagemlasa.herokuapp.com/profile', { method: "GET" })
   const data = await response.json()
 
-  console.log(data)
-
   return {
     props: {
       profile: data[0]
