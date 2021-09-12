@@ -6,7 +6,8 @@
   
   font-weight: 600;
   font-family: 'Merriweather Sans', sans-serif;
-  padding:0.5rem;
+  padding:1rem;
+  align-items: center;
 
   display: flex;
 
@@ -79,4 +80,12 @@
     transition: 2s;
     box-shadow: 0 0 10px rgba(255, 179, 64,1);
   }
+}
+
+.menuHamburger + h1{
+    margin: 0 10px;
+}
+
+.menuList{
+  color:#343434;
 }
