@@ -12,14 +12,13 @@ import {
 
 import styles from './styles.module.scss'
 
-export default function Header(props) {
+export default function Header() {
 
   return (
     <>
       <header
         className={`
-        ${styles.headerContainer}
-        ${props.class}      
+        ${styles.headerContainer}  
     `}
       >
         <h1>Developer</h1>
@@ -33,7 +32,7 @@ export default function Header(props) {
         </div>
         <Popover>
           <PopoverTrigger>
-            <Button colorscheme="yellow" variant="outline">
+            <Button colorScheme="yellow" variant="outline">
               Fale comigo
             </Button>
           </PopoverTrigger>
