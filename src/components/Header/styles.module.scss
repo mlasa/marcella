@@ -44,11 +44,11 @@
     }
 
     p{
-      transition: color,background, padding ease-in-out .3s;
+      transition:  ease-in .3s;
     }
     
     p:hover{
-      transition: color,background ease-out .3s;
+      transition:  ease-out .3s;
 
       background: lighten(#ffb340,5%);
       color:#343434;
@@ -56,4 +56,27 @@
       padding:0.5rem;
       border-radius: 5px;
     }
+}
+
+.neonLink{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  transition: 0.2s;
+  border-radius: 5px;
+
+  animation: blinker 2s infinite;
+}
+.neonLink:hover{
+  box-shadow: 0 0 10px #ffb340;
+}
+@keyframes blinker {
+  from { 
+     box-shadow: 0 0 10px rgba(255, 179, 64,0);
+    transition: 2s;
+  }
+  to {
+    transition: 2s;
+    box-shadow: 0 0 10px rgba(255, 179, 64,1);
+  }
 }

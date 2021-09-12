@@ -9,6 +9,7 @@ import {
   PopoverArrow,
   PopoverCloseButton,
 } from "@chakra-ui/react"
+import { extendTheme } from "@chakra-ui/react"
 
 import styles from './styles.module.scss'
 
@@ -32,9 +33,22 @@ export default function Header() {
         </div>
         <Popover>
           <PopoverTrigger>
-            <Button colorScheme="yellow" variant="outline">
-              Fale comigo
-            </Button>
+            <a href="#" className={styles.neonLink}>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <Button
+                colorScheme="yellow"
+                variant="outline"
+                style={{
+                  background: 'transparent',
+                  borderColor: 'transparent'
+                }}
+              >
+                Fale comigo
+              </Button>
+            </a>
           </PopoverTrigger>
           <PopoverContent className={styles.popoverContent}>
             <PopoverArrow />
