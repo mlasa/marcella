@@ -1,28 +1,18 @@
 @import '../../styles/themes/index.scss';
 
 .headerContainer{
-  @include themify('background', 'main');
-  transition: 0.9s background-color; 
-
-  @include themify('color', 'text-header');
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
+  background: rgba(0,0,0,.4);
+  color:white;
   
   font-weight: 600;
   font-family: 'Merriweather Sans', sans-serif;
+  padding:1rem;
 
   >div{
     flex:1;
     display: flex;
     align-items: center;
     justify-content: space-around;
-
-    a:hover{
-      @include themify('color', 'secondary');
-    }
   }
 
   .checkBoxComponent{
