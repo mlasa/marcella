@@ -1,5 +1,4 @@
 
-
 *{
   --gray-100:#f3f3f3;
   --gray-200:#d4d1d1;
@@ -47,32 +46,14 @@ li{
 }
 body{
   min-width: 297px;
-  background:rgb(13, 16, 20);
-  
-  min-height: 471px;
-
 }
-.page{
-  height:100vh;
-  //min-height: 100%;
+.app{
+  background: url('../../public/background.jpg') no-repeat center;
+  background-size: cover;
 
-  /*@media (min-width:350px) {
-    height:100vh;
-    min-height: 100%;
-  }*/
+  height: 100vh;
 }
+
 .header{
-  height: 9vh;
-  min-height: 50px;
-}
-.content{
-
- /* height:100vh;
-  max-height: 100%;*/
-
-  @media (min-height:350px) {
-    //border: 5px solid lime;
-    height: 91%;
-    max-height: 100%;
-  }
+  height: 10vh;
 }

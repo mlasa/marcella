@@ -15,13 +15,9 @@ const MyApp = ({ Component, pageProps }) => {
 
     <ChakraProvider>
       <HookProviders>
-        <div className="page">
-          <Header class="header">
-            {/*<Link href="/">Início</Link>*/}
-          </Header>
-          <div className="content">
-            <Component {...pageProps} changeTheme={LIGHT_THEME} />
-          </div>
+        <div className="app">
+          <Header className="header" />
+          <Component {...pageProps} changeTheme={LIGHT_THEME} />
         </div>
       </HookProviders>
     </ChakraProvider>
