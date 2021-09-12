@@ -13,7 +13,6 @@ import {
 import styles from './styles.module.scss'
 
 export default function Header(props) {
-  console.log(`Props ${props.children}`)
 
   return (
     <>
@@ -34,7 +33,7 @@ export default function Header(props) {
         </div>
         <Popover>
           <PopoverTrigger>
-            <Button colorScheme="yellow" variant="outline">
+            <Button colorscheme="yellow" variant="outline">
               Fale comigo
             </Button>
           </PopoverTrigger>
