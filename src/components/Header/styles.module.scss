@@ -59,29 +59,6 @@
     }
 }
 
-.neonLink{
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  transition: 0.2s;
-  border-radius: 5px;
-
-  animation: blinker 2s infinite;
-}
-.neonLink:hover{
-  box-shadow: 0 0 10px #ffb340;
-}
-@keyframes blinker {
-  from { 
-     box-shadow: 0 0 10px rgba(255, 179, 64,0);
-    transition: 2s;
-  }
-  to {
-    transition: 2s;
-    box-shadow: 0 0 10px rgba(255, 179, 64,1);
-  }
-}
-
 .menuHamburger + h1{
     margin: 0 10px;
 }

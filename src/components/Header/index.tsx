@@ -62,7 +62,7 @@ export default function Header() {
             </Menu>
           </div>
         }
-        <h1>Developer</h1>
+        <h1>{isLargerThan750px ? 'Developer' : 'Dev'}</h1>
         <div className={styles.linksTabs}>
           {isLargerThan750px &&
             <>
@@ -77,18 +77,12 @@ export default function Header() {
         </div>
         <Popover>
           <PopoverTrigger>
-            <a href="#" className={styles.neonLink}>
               <Button
                 colorScheme="yellow"
                 variant="outline"
-                style={{
-                  background: 'transparent',
-                  borderColor: 'transparent'
-                }}
               >
                 Fale comigo
               </Button>
-            </a>
           </PopoverTrigger>
           <PopoverContent className={styles.popoverContent}>
             <PopoverArrow />
