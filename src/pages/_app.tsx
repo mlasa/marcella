@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { ChakraProvider } from "@chakra-ui/react"
 
 import HookProviders from '../hooks'
@@ -7,8 +6,6 @@ import { useTheme } from '../hooks/theme'
 import Header from '../components/Header'
 import '../styles/globals.scss'
 
-
-
 const MyApp = ({ Component, pageProps }) => {
   const { globalTheme } = useTheme();
   return (
@@ -16,7 +13,7 @@ const MyApp = ({ Component, pageProps }) => {
     <ChakraProvider>
       <HookProviders>
         <div className="app">
-          <Header className="header" />
+          <Header class="header" />
           <Component {...pageProps} changeTheme={LIGHT_THEME} />
         </div>
       </HookProviders>

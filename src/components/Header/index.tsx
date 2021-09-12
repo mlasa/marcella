@@ -1,11 +1,11 @@
 import { Button } from "@chakra-ui/react"
+import Link from 'next/link'
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverHeader,
   PopoverBody,
-  PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
 } from "@chakra-ui/react"
@@ -13,17 +13,24 @@ import {
 import styles from './styles.module.scss'
 
 export default function Header(props) {
+  console.log(`Props ${props.children}`)
+
   return (
     <>
       <header
         className={`
-      ${styles.headerContainer}
-      ${props.class}      
+        ${styles.headerContainer}
+        ${props.class}      
     `}
       >
         <h1>Developer</h1>
-        <div>
-          {props.children}
+        <div className={styles.linksTabs}>
+          <p>
+            <Link href="/sobre">Sobre</Link>
+          </p>
+          <p>
+            <Link href="/experiencias">Experiências</Link>
+          </p>
         </div>
         <Popover>
           <PopoverTrigger>
@@ -34,7 +41,7 @@ export default function Header(props) {
           <PopoverContent className={styles.popoverContent}>
             <PopoverArrow />
             <PopoverCloseButton />
-            <PopoverHeader colorScheme="black">Use este e-mail!</PopoverHeader>
+            <PopoverHeader>Use este e-mail!</PopoverHeader>
             <PopoverBody>marcella.amorimsa@gmail.com</PopoverBody>
           </PopoverContent>
         </Popover>
