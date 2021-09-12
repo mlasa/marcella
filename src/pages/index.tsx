@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
-import { Button, ButtonGroup } from "@chakra-ui/react"
+import { Heading } from "@chakra-ui/react"
 
 import { useTheme } from '../hooks/theme'
 import styles from '../styles/home.module.scss'
@@ -26,8 +26,16 @@ export default function Home({ profile }) {
           />
         </section>
         <section className={styles.presentation}>
-          <h1 className={styles.name}>{profile.name}</h1>
-          <h1 className={styles.office}>Front end developer</h1>
+          <Heading
+            size="xl"
+            className={styles.name}
+          >{profile.name}</Heading>
+          <Heading
+            size="md"
+            className={styles.office}
+          >
+            Front end developer
+          </Heading>
         </section>
       </div>
     </>
