@@ -1,0 +1,41 @@
+@import './themes/index.scss';
+
+.containerHome{
+  background: rgba(0,0,0,.6);  
+  height: 91.9vh;
+
+  display: grid;
+  grid-template-areas: 
+    'myphoto'
+    'presentation'
+  ;
+}
+
+.myPhoto{
+  grid-area: 'myphoto';
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.photo{
+  border-radius: 100px;
+  height: 240px;
+}
+
+.presentation{
+  grid-area: 'presentation';
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color:rgb(221, 221, 221);
+}
+.name{
+  color: #fac85d;
+}
+.office{
+  color:rgb(221, 221, 221);
+}
