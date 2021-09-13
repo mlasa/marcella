@@ -27,15 +27,15 @@ import { useMediaQuery } from "@chakra-ui/react"
 
 import styles from './styles.module.scss'
 
-export default function Header() {
+export default function Header(props) {
   const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
-
 
   return (
     <>
       <header
         className={`
-        ${styles.headerContainer}  
+        ${styles.headerContainer}
+        ${props.class}
     `}
       >
         {
@@ -77,12 +77,12 @@ export default function Header() {
         </div>
         <Popover>
           <PopoverTrigger>
-              <Button
-                colorScheme="yellow"
-                variant="outline"
-              >
-                Fale comigo
-              </Button>
+            <Button
+              colorScheme="yellow"
+              variant="outline"
+            >
+              Fale comigo
+            </Button>
           </PopoverTrigger>
           <PopoverContent className={styles.popoverContent}>
             <PopoverArrow />
