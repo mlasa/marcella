@@ -1,42 +1,83 @@
 @import './themes/index.scss';
 
 .containerHome{
-  background: rgba(0,0,0,.6);  
-  height: 90vh;
   font-family: 'Merriweather Sans', sans-serif;
+  
+  background: url('../../public/background.jpg') no-repeat center;
+  background-size: cover;
 
-  display: grid;
-  grid-template-areas: 
-    'myphoto'
-    'presentation'
-  ;
+  height: 100vh;
+}
+.header{
+  height: 10%;
+}
+.layerHome{  
+  background: rgba(0,0,0,.8);
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .myPhoto{
-  grid-area: 'myphoto';
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
-}
-.photo{
-  border-radius: 100px;
-  height: 240px;
+  
+  .photo{
+    border-radius: 100px;
+    width:95%;
+    height: 70%;
+  }
 }
 
 .presentation{
-  grid-area: 'presentation';
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   color:rgb(221, 221, 221);
+  
+  .name{
+    padding-top: 1rem;
+    color: #ffb340;
+  }
+  .office{
+    color:rgb(221, 221, 221);
+  }
 }
-.name{
-  color: #ffb340;
+
+.skills{  
+  width: 100%;
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
+
+
+  .skill{
+    color:white;
+    border-color: 2px solid white;
+    font-weight: bolder;
+
+
+    animation: slideToRight 6s linear;
+
+    & +.skill{
+      margin-left: 1rem;
+    }
+  }
 }
-.office{
-  color:rgb(221, 221, 221);
+
+@keyframes slideToRight{
+  0% {
+    transform: translateX(-10px);
+    color:transparent;
+    border-color:transparent;
+  }
+  50% {
+    transform: translateX(0px);
+  }
 }
