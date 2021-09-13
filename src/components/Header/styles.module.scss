@@ -1,22 +1,16 @@
 @import '../../styles/themes/index.scss';
 
 .headerContainer{
-  background: rgba(0,0,0,.4);
+  background: rgba(0,0,0,.6);
   color:white;
   
   font-weight: 600;
   font-family: 'Merriweather Sans', sans-serif;
   padding:1rem;
+  align-items: center;
 
   display: flex;
 
-
-  >div{
-    flex:1;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
 
   .checkBoxComponent{
     display: flex;
@@ -37,4 +31,38 @@
 }
 .popoverContent{
   color:rgb(34, 34, 34);
+}
+
+.linksTabs{ 
+
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    p+p{
+      margin-left:2rem;
+    }
+
+    p{
+      transition:  ease-in .3s;
+    }
+    
+    p:hover{
+      transition:  ease-out .3s;
+
+      background: lighten(#ffb340,5%);
+      color:#343434;
+
+      padding:0.5rem;
+      border-radius: 5px;
+    }
+}
+
+.menuHamburger + h1{
+    margin: 0 10px;
+}
+
+.menuList{
+  color:#343434;
 }

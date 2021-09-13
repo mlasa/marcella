@@ -1,9 +1,5 @@
 
 *{
-  --gray-100:#f3f3f3;
-  --gray-200:#d4d1d1;
-  --blue-600:#1f3d57;
-
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -44,16 +40,29 @@ a{
 li{
   list-style-type: none;
 }
-body{
-  min-width: 297px;
-}
-.app{
-  background: url('../../public/background.jpg') no-repeat center;
-  background-size: cover;
 
+html {
+  scroll-behavior: smooth;
+  min-height: 100%;
+  height: 100vh;
+}
+body{
+  min-height: 100vh;
   height: 100vh;
 }
 
-.header{
-  height: 10vh;
+::-webkit-scrollbar{
+  background:black;
+  width: 0.5rem;
 }
+
+::-webkit-scrollbar-thumb{
+  background-color:rgb(59, 59, 59);
+  border-radius: 50px;
+  max-height: 1rem;
+}
+
+::-webkit-scrollbar{
+  max-height: 1rem;
+}
+
