@@ -47,7 +47,9 @@ export default function Header(props) {
                 aria-label="Options"
                 icon={<HamburgerIcon />}
                 variant="outline"
-                style={{ background: 'transparent' }}
+                _hover={{
+                  background: "none"
+                }}
               />
               <MenuList>
                 <div className={styles.menuList}>
@@ -63,23 +65,27 @@ export default function Header(props) {
           </div>
         }
         <h1>{isLargerThan750px ? 'Developer' : 'Dev'}</h1>
-        <div className={styles.linksTabs}>
+        {<div className={styles.linksTabs}>
           {isLargerThan750px &&
             <>
-              <p>
+              {/*<p>
                 <Link href="/sobre">Sobre</Link>
               </p>
               <p>
                 <Link href="/experiencias">Experiências</Link>
-              </p>
+              </p>*/}
             </>
           }
-        </div>
+        </div>}
         <Popover>
           <PopoverTrigger>
             <Button
-              colorScheme="yellow"
+              borderColor="#ffb340"
+              color="#ffb340"
               variant="outline"
+              _hover={{
+                background: "none"
+              }}
             >
               Fale comigo
             </Button>
