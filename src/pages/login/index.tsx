@@ -1,67 +1,62 @@
 import { useState } from 'react'
-import styles from './styles.module.scss'
+import { useRouter } from 'next/router'
 import { Heading, Input, Button, useToast } from "@chakra-ui/react"
+import Cookie from 'js-cookie'
+import { addDays } from 'date-fns'
 
+import styles from './styles.module.scss'
+import api from '../../services/api'
 
 export default function Login() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const [token, setToken] = useState('')
-    const [error, setError] = useState('')
+    const router = useRouter()
 
     const toast = useToast()
 
     function saveUserLogged(token, user) {
-        localStorage.setItem('@mlasaPortfolio', JSON.stringify({ token, user }))
+        Cookie.set('@mlasaPortfolio', JSON.stringify({ token, user }), {
+            expires: addDays(new Date(), 1)
+        })
     }
 
     function login(email, password) {
 
         !email && !password &&
             toast({
-                title: "Poxa, não deu pra fazer login",
+                title: "Você precisa informar as credenciais",
                 description: "Preecha senha e e-mail",
                 status: "error",
                 duration: 9000,
                 isClosable: true,
             })
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: email, password: password })
-        }
 
-        fetch('http://mypagemlasa.herokuapp.com/session', requestOptions)
+        api.post('/session', { email: email, password: password })
             .then(response => {
-                return response.json()
+                const { token, user } = response.data
+
+                if (token && user) {
+                    saveUserLogged(token, user)
+                    router.push('/home')
+                }
+
+
+                toast({
+                    title: "Login feito com sucesso",
+                    status: "success",
+                    duration: 9000,
+                    isClosable: true,
+                })
             })
-            .then(response => {
-                if (response.token) {
-                    setToken(response.token)
-                    setError('')
-
-                    toast({
-                        title: "Você fez login!",
-                        description: "Login feito com sucesso",
-                        status: "success",
-                        duration: 9000,
-                        isClosable: true,
-                    })
-
-                    saveUserLogged(response.token, response.user)
-                }
-                else {
-                    setToken('')
-                    setError(response.errorMessage)
-
-                    toast({
-                        title: error,
-                        status: "error",
-                        duration: 9000,
-                        isClosable: true,
-                    })
-                }
+            .catch(error => {
+                console.log(error)
+                toast({
+                    title: error.response.data.errorMessage,
+                    status: "error",
+                    duration: 9000,
+                    isClosable: true,
+                })
             })
     }
 
@@ -83,10 +78,16 @@ export default function Login() {
                         placeholder="*****"
                         onChange={(event) => setPassword(event.target.value)}
                     />
-                    <Button
-                        onClick={() => login(email, password)}
-                        colorScheme="yellow"
-                    >Entrar</Button>
+                    {email && password ?
+                        <Button
+                            onClick={() => login(email, password)}
+                            colorScheme="yellow"
+                        >
+                            Entrar
+                        </Button>
+                        :
+                        <Button disabled colorScheme="yellow">Entrar</Button>
+                    }
                 </div>
             </section>
         </div >
