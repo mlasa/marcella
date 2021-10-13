@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Heading, Input, Button, useToast } from "@chakra-ui/react"
 import Cookie from 'js-cookie'
@@ -14,13 +15,14 @@ export default function Login() {
 
     const toast = useToast()
 
-    function saveUserLogged(token, user) {
+
+    function saveUserLogged(token, user): void {
         Cookie.set('@mlasaPortfolio', JSON.stringify({ token, user }), {
             expires: addDays(new Date(), 1)
         })
     }
 
-    function login(email, password) {
+    function login(email, password): void {
 
         !email && !password &&
             toast({
@@ -38,7 +40,7 @@ export default function Login() {
 
                 if (token && user) {
                     saveUserLogged(token, user)
-                    router.push('/home')
+                    router.push('/dashboard')
                 }
 
 
@@ -60,36 +62,55 @@ export default function Login() {
             })
     }
 
+    function checkIfUserIsLogged(): Boolean {
+        const userLoggedIn = Cookie.get('@mlasaPortfolio')
+
+        if (userLoggedIn)
+            return true
+        else return false
+    }
+
+    useEffect(() => {
+        if (checkIfUserIsLogged())
+            router.push('/dashboard')
+    }, [])
+
     return (
-        <div className={styles.loginContainer}>
-            <section className={styles.sectionLogin}>
-                <Heading size="lg">Acesso</Heading>
-                <div className={styles.boxLogin}>
-                    <Input
-                        value={email}
-                        variant="filled"
-                        placeholder="E-mail ou nome de usuário"
-                        onChange={(event) => setEmail(event.target.value)}
-                    />
-                    <Input
-                        value={password}
-                        variant="filled"
-                        type="password"
-                        placeholder="*****"
-                        onChange={(event) => setPassword(event.target.value)}
-                    />
-                    {email && password ?
-                        <Button
-                            onClick={() => login(email, password)}
-                            colorScheme="yellow"
-                        >
-                            Entrar
-                        </Button>
-                        :
-                        <Button disabled colorScheme="yellow">Entrar</Button>
-                    }
-                </div>
-            </section>
-        </div >
+        <>
+            <Head>
+                <title> Marcella Dev | Login</title>
+            </Head>
+
+            <div className={styles.loginContainer}>
+                <section className={styles.sectionLogin}>
+                    <Heading size="lg">Acesso</Heading>
+                    <div className={styles.boxLogin}>
+                        <Input
+                            value={email}
+                            variant="filled"
+                            placeholder="E-mail ou nome de usuário"
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+                        <Input
+                            value={password}
+                            variant="filled"
+                            type="password"
+                            placeholder="*****"
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                        {email && password ?
+                            <Button
+                                onClick={() => login(email, password)}
+                                colorScheme="yellow"
+                            >
+                                Entrar
+                            </Button>
+                            :
+                            <Button disabled colorScheme="yellow">Entrar</Button>
+                        }
+                    </div>
+                </section>
+            </div >
+        </>
     )
 }

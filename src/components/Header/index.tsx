@@ -57,7 +57,7 @@ export default function Header(props) {
 					</Menu>
 				</div>
 				}
-				<h1>{isLargerThan750px ? 'Developer' : 'Dev'}</h1>
+				<h1 className={styles.mark}>{isLargerThan750px ? 'Developer' : 'Dev'}</h1>
 				{<div className={styles.linksTabs}>
 					{/*isLargerThan750px &&
 						<>
@@ -73,8 +73,7 @@ export default function Header(props) {
 				<Popover>
 					<PopoverTrigger>
 						<Button
-							borderColor="#ffb340"
-							color="#ffb340"
+							borderColor="#a77fe9"
 							variant="outline"
 							_hover={{
 								background: "none"

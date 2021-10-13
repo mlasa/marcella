@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "index.scss",
+        "dark.scss",
+        "light.scss"
+    ],
+    "names": [],
+    "file": "index.css"
+}

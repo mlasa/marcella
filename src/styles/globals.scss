@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
 }
 @media(max-width: 1080px){
   html{
@@ -21,7 +20,7 @@ body, input, textarea, button{
 }
 h1,h2,h3,h4,h5,h6{
   font-weight: 600;
-  font-family: 'Merriweather Sans', sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   color: var(--gray-800);
 }
 h1{
@@ -36,9 +35,6 @@ button{
 a{
   text-decoration: none;
   color: inherit;
-}
-li{
-  list-style-type: none;
 }
 
 html {

@@ -1,80 +1,115 @@
 @import './themes/index.scss';
 
 .containerHome{
-  font-family: 'Merriweather Sans', sans-serif;
-  
-  background: url('../../public/background.jpg') no-repeat center;
-  background-size: cover;
-
+  background:#1E2326;
   height: 100vh;
 }
 .header{
   height: 10%;
 }
-.layerHome{  
-  background: rgba(0,0,0,.4);
+
+.content{
   height: 90%;
-  display: flex;
+
+  display:grid;
+  grid-template-areas:
+  "texts photo";
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.photo{
+  width:100%;
+  border-radius: 100px;
+}
+
+.me{
+	grid-area:photo;
+  height: 100%;
+
+  display:flex;
+  align-items: center;
+  flex:1;
+}
+
+.texts{
+	grid-area: texts;
+  color:white;
+  padding:1rem;
+  font-weight: bolder;
+  
+  display:flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
+  height: 100%;
 
-.myPhoto{
 
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  
-  .photo{
-    border-radius: 100px;
-    width:100%;
-    height: 70%;
+  h2{
+    font-size: 2rem;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  h1{
+    line-height: 1;
+    font-size: 3rem;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .nameHighlight{
+    color:#a77fe9;
+    font-family: 'Source Sans Pro', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    span{    
+      font-family: 'Source Sans Pro', sans-serif;  
+      color:#77ffa5;
+    }
   }
 }
-
-.presentation{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  color: white;
-  
-  .name{
-    padding-top: 1rem;
-    color: #ffb340;
-  }
-}
-
-.skills{  
-  width: 100%;
-  display: flex;
-  margin-top: 2rem;
-  justify-content: center;
-
+.skills{
+  margin-top: 1.5rem;
+  max-width: 90%;
 
   .skill{
-    color:white;
-    border-color: 2px solid white;
-    font-weight: bolder;
-
-
-    animation: slideToRight 6s linear;
-
-    & +.skill{
-      margin-left: 1rem;
+    & + .skill{
+      margin:.3rem;
     }
   }
 }
 
-@keyframes slideToRight{
-  0% {
-    transform: translateX(-10px);
-    color:transparent;
-    border-color:transparent;
-  }
-  50% {
-    transform: translateX(0px);
+.textsMobile{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  line-height: 2;
+  max-height: 60%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.meMobile{
+  display:flex;
+  justify-content: center;
+}
+.containerHomeMobile{
+  background:#1E2326;
+}
+
+.contentMobile{
+  display:flex;
+  flex-direction: column;
+}
+
+.isMobile{
+  .photo{
+    width: 50%;
+    border-radius: 100px;
+
+    position: relative;
+    top:90px;
+    left: 60px;
   }
 }
+
