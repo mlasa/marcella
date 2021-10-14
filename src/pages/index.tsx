@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { Badge } from "@chakra-ui/react"
 
@@ -12,27 +13,30 @@ const cv_url = 'https://drive.google.com/file/d/1abSMIAyU9txgVDb8MTBaTq_HKNkABol
 export default function Home({ profile }) {
 	const { globalTheme } = useTheme()
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
+	const [isWideScreen, setIsWideScreen] = useState(false);
+
+	useEffect(() => setIsWideScreen(isLargerThan750px), [isLargerThan750px])
+
 
 	return (
-		<div className={`${isLargerThan750px && styles.containerHome}  ${!isLargerThan750px && styles.containerHomeMobile}`}>
+		<div className={`${styles.containerHome}`}>
 			<Head>
 				<title> Marcella Dev | Welcome</title>
 			</Head>
 			{<Header class={styles.header} />}
 
 			<div className={`
-				${isLargerThan750px && styles.content}
-			 	${!isLargerThan750px && `${styles.isMobile} ${styles.contentMobile}`} `}>
-
-				<section className={`${styles.me}  ${!isLargerThan750px && styles.meMobile}`}>
+				${isWideScreen ? styles.content : styles.contentMobile}
+			`}>
+				<section className={`${isWideScreen ? styles.me : styles.meMobile}`}>
 					<img
-						className={styles.photo}
+						className={`${isWideScreen ? styles.photo : styles.photoMobile}`}
 						src="meOut2021-cut.png"
 						alt="Foto de Marcella"
 					/>
 				</section>
 
-				<section className={`${styles.texts}  ${!isLargerThan750px && styles.textsMobile}`}>
+				<section className={`${styles.texts}`}>
 					<h2>Olá,</h2>
 					<h1>sou a
 						<span className={styles.nameHighlight}>
@@ -48,7 +52,7 @@ export default function Home({ profile }) {
 					</div>
 				</section>
 			</div>
-		</div >
+		</div>
 	)
 }
 
