@@ -1,0 +1,38 @@
+.loginContainer{
+    background-size: cover;
+    height:100vh;
+
+    font-family: 'Merriweather Sans', sans-serif;
+
+    display:grid;
+    justify-content:center;
+    align-content:center;  
+
+    color:white;
+}
+
+.sectionLogin{
+    padding:2rem;
+    background: #1a2e34ee;
+    border-radius: 5px;
+    width: 100%;
+        
+    input{
+        color:#373737;
+        margin-top: 0.5rem;
+
+        & + input{
+            margin-bottom: 0.5rem;
+        }
+    }
+    input:focus{
+        color:white;
+    }
+}
+
+.boxLogin{
+    width: 100%;
+
+    display:grid;
+    align-content:center;
+}

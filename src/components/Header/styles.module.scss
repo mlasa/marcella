@@ -1,11 +1,11 @@
 @import '../../styles/themes/index.scss';
 
 .headerContainer{
-  background: rgba(0,0,0,.6);
   color:white;
   
   font-weight: 600;
-  font-family: 'Merriweather Sans', sans-serif;
+
+  font-family: sans-serif;
   padding:1rem;
   align-items: center;
 
@@ -28,6 +28,11 @@
       }
     }
   }
+}
+
+.mark{
+  font-size: 1.3rem;
+  font-family: 'Source Sans Pro', sans-serif
 }
 .popoverContent{
   color:rgb(34, 34, 34);
