@@ -9,6 +9,7 @@ import styles from './styles.module.scss'
 import api from '../../services/api'
 
 export default function Login() {
+    console.log('Teste')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const router = useRouter()

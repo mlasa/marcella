@@ -31,7 +31,7 @@ export default function Home({ profile }) {
 				<section className={`${isWideScreen ? styles.me : styles.meMobile}`}>
 					<img
 						className={`${isWideScreen ? styles.photo : styles.photoMobile}`}
-						src="meOut2021-cut.png"
+						src="mbg.png"
 						alt="Foto de Marcella"
 					/>
 				</section>
