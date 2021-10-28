@@ -90,16 +90,17 @@
 
     p{
       transition:  ease-in .3s;
+      cursor: pointer;
     }
     
     p:hover{
       transition:  ease-out .3s;
 
-      background: lighten(#ffb340,5%);
+      background: lighten(#6deea5,5%);
       color:#343434;
 
       padding:0.5rem;
-      border-radius: 5px;
+      border-radius: 0.5rem;
     }
 }
 

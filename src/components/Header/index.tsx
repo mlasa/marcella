@@ -77,18 +77,20 @@ export default function Header(props) {
 				</div>
 				}
 				<h1 className={styles.mark}>{isLargerThan750px ? 'Developer' : 'Dev'}</h1>
-				{<div className={styles.linksTabs}>
-					{/*isLargerThan750px &&
+				<div className={styles.linksTabs}>
+					{
+						isLargerThan750px &&
 						<>
 							<p>
-                <Link href="/sobre">Sobre</Link>
-              </p>
-              <p>
-                <Link href="/experiencias">Experiências</Link>
-              </p>
+								<Link href="/sobre">Sobre</Link>
+							</p>
+							<p>
+								<Link href="/experiencias">Experiências</Link>
+							</p>
 						</>
-					*/}
-				</div>}
+					}
+				</div>
+
 				<Popover
 					styleConfig={{
 						border: "none"
