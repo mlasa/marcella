@@ -8,8 +8,6 @@ import {
 	PopoverBody,
 	PopoverArrow,
 	PopoverCloseButton,
-} from "@chakra-ui/react"
-import {
 	Menu,
 	MenuButton,
 	MenuList,
@@ -20,15 +18,37 @@ import {
 	MenuIcon,
 	MenuCommand,
 	MenuDivider,
-	IconButton
+	IconButton,
+	UnorderedList,
+	ListItem,
+	Input,
+	Textarea,
+	Stack,
+	Icon,
+	useMediaQuery,
+	useToast
 } from "@chakra-ui/react"
-import { HamburgerIcon } from "@chakra-ui/icons"
-import { useMediaQuery } from "@chakra-ui/react"
+
+import { HamburgerIcon, CopyIcon, LinkIcon } from "@chakra-ui/icons"
 
 import styles from './styles.module.scss'
 
 export default function Header(props) {
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
+	const toast = useToast()
+
+
+	function copyToClipboard() {
+		console.log('Copy....')
+
+		navigator.clipboard.writeText('marcella.amorimsa@gmail.com')
+
+		toast({
+			title: "E-mail copiado! ",
+			status: "success",
+			duration: 2000,
+		})
+	}
 
 	return (
 		<>
@@ -70,21 +90,44 @@ export default function Header(props) {
 						</>
 					*/}
 				</div>}
-				<Popover>
+				<Popover
+					styleConfig={{
+						border: "none"
+					}}
+				>
 					<PopoverTrigger>
 						<Button
 							borderColor="#a77fe9"
 							variant="outline"
 							_hover={{
-								background: "none"
+								background: "#956dd4",
 							}}
-						>Fale comigo</Button>
+						>Contato</Button>
 					</PopoverTrigger>
-					<PopoverContent className={styles.popoverContent}>
-						<PopoverArrow />
-						<PopoverCloseButton />
-						<PopoverHeader>Use este e-mail!</PopoverHeader>
-						<PopoverBody>marcella.amorimsa@gmail.com</PopoverBody>
+					<PopoverContent>
+						<div className={styles.popoverContent}>
+							<PopoverArrow />
+							<PopoverCloseButton />
+							<PopoverHeader className={styles.popoverHeader}>
+								Estou disponível por:
+							</PopoverHeader>
+							<PopoverBody className={styles.popoverBody}>
+								<section className={styles.listSection}>
+									<span onClick={copyToClipboard}>
+										<Icon as={CopyIcon} />
+										<p>
+											E-mail: marcella.amorimsa@gmail.com
+										</p>
+									</span>
+									<span>
+										<Icon as={LinkIcon} />
+										<p>
+											<Link href="https://www.linkedin.com/in/marcellaamorim/">Acessar LinkedIn</Link>
+										</p>
+									</span>
+								</section>
+							</PopoverBody>
+						</div>
 					</PopoverContent>
 				</Popover>
 			</header>

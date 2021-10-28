@@ -34,8 +34,47 @@
   font-size: 1.3rem;
   font-family: 'Source Sans Pro', sans-serif
 }
+
+
 .popoverContent{
-  color:rgb(34, 34, 34);
+  color: white;
+  border: none;
+  background:rgb(55, 60, 63);
+  padding: 2rem;
+  border-radius: 0.5rem;
+
+  .popoverHeader{
+    margin: 0 auto;
+  }
+
+  .popoverBody{
+    .listSection{
+      margin-top: 1rem;
+
+       span{
+         background: inherit;
+         padding:.5rem;
+
+         display: flex;
+         align-items: center;
+
+         p{
+           margin-left: 0.5rem;
+         }
+
+         & + span{
+          margin-top: .5rem;
+         }
+
+         &:hover{
+           cursor: pointer;
+           filter: brightness(0.8);
+         }
+       }
+    }
+  }
+
+
 }
 
 .linksTabs{ 
