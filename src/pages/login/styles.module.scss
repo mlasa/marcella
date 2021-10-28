@@ -1,6 +1,7 @@
 .loginContainer{
-    background-size: cover;
     height:100vh;
+    background: linear-gradient(90deg, rgba(109,238,164,1) 35%, rgba(167,127,233,1) 100%);
+
 
     font-family: 'Merriweather Sans', sans-serif;
 
@@ -13,12 +14,12 @@
 
 .sectionLogin{
     padding:2rem;
-    background: #1a2e34ee;
     border-radius: 5px;
     width: 100%;
+    background: darken( #a87fe962, 50%);
         
     input{
-        color:#373737;
+        color:white;
         margin-top: 0.5rem;
 
         & + input{

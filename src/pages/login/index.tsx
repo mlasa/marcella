@@ -84,17 +84,18 @@ export default function Login() {
 
             <div className={styles.loginContainer}>
                 <section className={styles.sectionLogin}>
+
                     <Heading size="lg">Acesso</Heading>
                     <div className={styles.boxLogin}>
                         <Input
                             value={email}
-                            variant="filled"
+                            variant="outline"
                             placeholder="E-mail ou nome de usuário"
                             onChange={(event) => setEmail(event.target.value)}
                         />
                         <Input
                             value={password}
-                            variant="filled"
+                            variant="outline"
                             type="password"
                             placeholder="*****"
                             onChange={(event) => setPassword(event.target.value)}
@@ -102,14 +103,15 @@ export default function Login() {
                         {email && password ?
                             <Button
                                 onClick={() => login(email, password)}
-                                colorScheme="yellow"
+                                colorScheme="cyan"
                             >
                                 Entrar
                             </Button>
                             :
-                            <Button disabled colorScheme="yellow">Entrar</Button>
+                            <Button disabled colorScheme="cyan">Entrar</Button>
                         }
                     </div>
+
                 </section>
             </div >
         </>
