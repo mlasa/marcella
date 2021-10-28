@@ -1,4 +1,3 @@
-import { Button } from "@chakra-ui/react"
 import Link from 'next/link'
 import {
 	Popover,
@@ -12,23 +11,12 @@ import {
 	MenuButton,
 	MenuList,
 	MenuItem,
-	MenuItemOption,
-	MenuGroup,
-	MenuOptionGroup,
-	MenuIcon,
-	MenuCommand,
-	MenuDivider,
 	IconButton,
-	UnorderedList,
-	ListItem,
-	Input,
-	Textarea,
-	Stack,
 	Icon,
 	useMediaQuery,
-	useToast
+	useToast,
+	Button
 } from "@chakra-ui/react"
-
 import { HamburgerIcon, CopyIcon, LinkIcon } from "@chakra-ui/icons"
 
 import styles from './styles.module.scss'
@@ -50,88 +38,92 @@ export default function Header(props) {
 	}
 
 	return (
-		<>
-			<header className={`
+		<header className={`
 				${styles.headerContainer}
 				${props.class}
 			`}
-			>{!isLargerThan750px &&
-				<div className={styles.menuHamburger}>
-					<Menu isLazy>
-						<MenuButton
-							as={IconButton}
-							aria-label="Options"
-							icon={<HamburgerIcon />}
-							variant="outline"
-							_hover={{
-								background: "none"
-							}}
-						/>
-						<MenuList>
-							<div className={styles.menuList}>
-								<MenuItem> <Link href="/sobre">Sobre</Link></MenuItem>
-								<MenuItem> <Link href="/experiencias">Experiências</Link></MenuItem>
-							</div>
-						</MenuList>
-					</Menu>
-				</div>
-				}
-				<h1 className={styles.mark}>{isLargerThan750px ? 'Developer' : 'Dev'}</h1>
-				<div className={styles.linksTabs}>
-					{
-						isLargerThan750px &&
-						<>
-							<p>
-								<Link href="/sobre">Sobre</Link>
-							</p>
-							<p>
-								<Link href="/experiencias">Experiências</Link>
-							</p>
-						</>
-					}
-				</div>
-
-				<Popover
-					styleConfig={{
-						border: "none"
-					}}
-				>
-					<PopoverTrigger>
-						<Button
-							borderColor="#a77fe9"
-							variant="outline"
-							_hover={{
-								background: "#956dd4",
-							}}
-						>Contato</Button>
-					</PopoverTrigger>
-					<PopoverContent>
-						<div className={styles.popoverContent}>
-							<PopoverArrow />
-							<PopoverCloseButton />
-							<PopoverHeader className={styles.popoverHeader}>
-								Estou disponível por:
-							</PopoverHeader>
-							<PopoverBody className={styles.popoverBody}>
-								<section className={styles.listSection}>
-									<span onClick={copyToClipboard}>
-										<Icon as={CopyIcon} />
-										<p>
-											E-mail: marcella.amorimsa@gmail.com
-										</p>
-									</span>
-									<span>
-										<Icon as={LinkIcon} />
-										<p>
-											<Link href="https://www.linkedin.com/in/marcellaamorim/">Acessar LinkedIn</Link>
-										</p>
-									</span>
-								</section>
-							</PopoverBody>
+		>{!isLargerThan750px &&
+			<div className={styles.menuHamburger}>
+				<Menu isLazy>
+					<MenuButton
+						as={IconButton}
+						aria-label="Options"
+						icon={<HamburgerIcon />}
+						variant="outline"
+						_hover={{
+							background: "none"
+						}}
+					/>
+					<MenuList>
+						<div className={styles.menuList}>
+							<MenuItem> <Link href="/sobre">Sobre</Link></MenuItem>
+							<MenuItem> <Link href="/experiencias">Experiências</Link></MenuItem>
 						</div>
-					</PopoverContent>
-				</Popover>
-			</header>
-		</>
+					</MenuList>
+				</Menu>
+			</div>
+			}
+			{
+				isLargerThan750px ?
+					<h1 className={styles.mark}>Developer</h1>
+					:
+					<h1 className={styles.mark}>Dev</h1>
+
+			}
+			<div className={styles.linksTabs}>
+				{
+					isLargerThan750px &&
+					<>
+						<p>
+							<Link href="/sobre">Sobre</Link>
+						</p>
+						<p>
+							<Link href="/experiencias">Experiências</Link>
+						</p>
+					</>
+				}
+			</div>
+
+			<Popover
+				styleConfig={{
+					border: "none"
+				}}
+			>
+				<PopoverTrigger>
+					<Button
+						borderColor="#a77fe9"
+						variant="outline"
+						_hover={{
+							background: "#956dd4",
+						}}
+					>Contato</Button>
+				</PopoverTrigger>
+				<PopoverContent>
+					<div className={styles.popoverContent}>
+						<PopoverArrow />
+						<PopoverCloseButton />
+						<PopoverHeader className={styles.popoverHeader}>
+							Estou disponível por:
+						</PopoverHeader>
+						<PopoverBody className={styles.popoverBody}>
+							<section className={styles.listSection}>
+								<span onClick={copyToClipboard}>
+									<Icon as={CopyIcon} />
+									<p>
+										E-mail: marcella.amorimsa@gmail.com
+									</p>
+								</span>
+								<span>
+									<Icon as={LinkIcon} />
+									<p>
+										<Link href="https://www.linkedin.com/in/marcellaamorim/">Acessar LinkedIn</Link>
+									</p>
+								</span>
+							</section>
+						</PopoverBody>
+					</div>
+				</PopoverContent>
+			</Popover>
+		</header>
 	)
 }
