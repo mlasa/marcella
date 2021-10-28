@@ -9,13 +9,10 @@ import styles from './styles.module.scss'
 import api from '../../services/api'
 
 export default function Login() {
-    console.log('Teste')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const router = useRouter()
-
     const toast = useToast()
-
 
     function saveUserLogged(token, user): void {
         Cookie.set('@mlasaPortfolio', JSON.stringify({ token, user }), {
@@ -83,15 +80,16 @@ export default function Login() {
             </Head>
 
             <div className={styles.loginContainer}>
-                <section className={styles.sectionLogin}>
+                <section className={`${styles.sectionLogin}`}>
 
-                    <Heading size="lg">Acesso</Heading>
+                    <Heading size="lg">Acesso ao painel</Heading>
                     <div className={styles.boxLogin}>
                         <Input
                             value={email}
                             variant="outline"
                             placeholder="E-mail ou nome de usuário"
                             onChange={(event) => setEmail(event.target.value)}
+                            autoFocus={true}
                         />
                         <Input
                             value={password}
