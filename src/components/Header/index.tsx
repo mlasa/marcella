@@ -39,7 +39,6 @@ export default function Header(props) {
 
 
 	function copyToClipboard() {
-		console.log('Copy....')
 
 		navigator.clipboard.writeText('marcella.amorimsa@gmail.com')
 
