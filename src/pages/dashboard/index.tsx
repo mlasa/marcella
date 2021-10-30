@@ -9,7 +9,8 @@ import {
     ListItem,
     Input,
     Textarea,
-    Stack
+    Stack,
+    Heading
 } from "@chakra-ui/react"
 
 import styles from './styles.module.scss'
@@ -21,7 +22,7 @@ interface IUser {
     email: string;
 }
 
-export default function Home() {
+export default function Dashboard() {
     const router = useRouter()
     const [user, setUser] = useState<IUser>({} as IUser)
 
@@ -72,7 +73,8 @@ export default function Home() {
                         <div>
                             <form>
                                 <Stack spacing={2}>
-                                    <Input variant="filled" placeholder="Nome" />
+                                    <Heading size="md" style={{ marginBottom: '1rem' }}>Informações na homepage</Heading>
+                                    <Input variant="filled" placeholder="Nome" value={user.name || ''} onChange={(e) => setUser({ ...user, name: e.target.value })} />
                                     <Input variant="filled" placeholder="Cargo" />
                                     <Textarea
                                         variant="filled"

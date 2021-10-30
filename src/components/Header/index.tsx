@@ -1,4 +1,3 @@
-import { Button } from "@chakra-ui/react"
 import Link from 'next/link'
 import {
 	Popover,
@@ -8,35 +7,46 @@ import {
 	PopoverBody,
 	PopoverArrow,
 	PopoverCloseButton,
-} from "@chakra-ui/react"
-import {
 	Menu,
 	MenuButton,
 	MenuList,
 	MenuItem,
-	MenuItemOption,
-	MenuGroup,
-	MenuOptionGroup,
-	MenuIcon,
-	MenuCommand,
-	MenuDivider,
-	IconButton
+	IconButton,
+	Icon,
+	useMediaQuery,
+	useToast,
+	Button
 } from "@chakra-ui/react"
-import { HamburgerIcon } from "@chakra-ui/icons"
-import { useMediaQuery } from "@chakra-ui/react"
+import { HamburgerIcon, CopyIcon, LinkIcon } from "@chakra-ui/icons"
 
 import styles from './styles.module.scss'
+import { NavLink } from '../NavLink'
 
 export default function Header(props) {
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
+	const toast = useToast()
+
+
+	function copyToClipboard() {
+
+		navigator.clipboard.writeText('marcella.amorimsa@gmail.com')
+
+		toast({
+			title: "E-mail copiado! ",
+			status: "success",
+			duration: 2000,
+		})
+	}
 
 	return (
-		<>
-			<header className={`
+		<header
+			className={`
 				${styles.headerContainer}
 				${props.class}
 			`}
-			>{!isLargerThan750px &&
+		>
+			{
+				!isLargerThan750px &&
 				<div className={styles.menuHamburger}>
 					<Menu isLazy>
 						<MenuButton
@@ -50,44 +60,81 @@ export default function Header(props) {
 						/>
 						<MenuList>
 							<div className={styles.menuList}>
-								<MenuItem> <Link href="/sobre">Sobre</Link></MenuItem>
-								<MenuItem> <Link href="/experiencias">Experiências</Link></MenuItem>
+								<MenuItem>
+									<NavLink to="/sobre" label="Sobre" />
+								</MenuItem>
+								<MenuItem>
+									<NavLink to="/experiencias" label="Experiências" />
+								</MenuItem>
 							</div>
 						</MenuList>
 					</Menu>
 				</div>
+			}
+
+			<Link href="/">
+				{
+					isLargerThan750px ?
+						<h1 className={styles.mark}>Developer</h1>
+						:
+						<h1 className={styles.mark}>Dev</h1>
 				}
-				<h1 className={styles.mark}>{isLargerThan750px ? 'Developer' : 'Dev'}</h1>
-				{<div className={styles.linksTabs}>
-					{/*isLargerThan750px &&
-						<>
-							<p>
-                <Link href="/sobre">Sobre</Link>
-              </p>
-              <p>
-                <Link href="/experiencias">Experiências</Link>
-              </p>
-						</>
-					*/}
-				</div>}
-				<Popover>
-					<PopoverTrigger>
-						<Button
-							borderColor="#a77fe9"
-							variant="outline"
-							_hover={{
-								background: "none"
-							}}
-						>Fale comigo</Button>
-					</PopoverTrigger>
-					<PopoverContent className={styles.popoverContent}>
+			</Link>
+
+			<div className={styles.linksTabs}>
+				{
+					isLargerThan750px &&
+					<ul>
+						<li>
+							<NavLink to="/sobre" label="Sobre" />
+						</li>
+						<li>
+							<NavLink to="/experiencias" label="Experiências" />
+						</li>
+					</ul>
+				}
+			</div>
+
+			<Popover
+				styleConfig={{
+					border: "none"
+				}}
+			>
+				<PopoverTrigger>
+					<Button
+						borderColor="#a77fe9"
+						variant="outline"
+						_hover={{
+							background: "#956dd4",
+						}}
+					>Contato</Button>
+				</PopoverTrigger>
+				<PopoverContent>
+					<div className={styles.popoverContent}>
 						<PopoverArrow />
 						<PopoverCloseButton />
-						<PopoverHeader>Use este e-mail!</PopoverHeader>
-						<PopoverBody>marcella.amorimsa@gmail.com</PopoverBody>
-					</PopoverContent>
-				</Popover>
-			</header>
-		</>
+						<PopoverHeader className={styles.popoverHeader}>
+							Estou disponível por:
+						</PopoverHeader>
+						<PopoverBody className={styles.popoverBody}>
+							<section className={styles.listSection}>
+								<span onClick={copyToClipboard}>
+									<Icon as={CopyIcon} />
+									<p>
+										E-mail: marcella.amorimsa@gmail.com
+									</p>
+								</span>
+								<span>
+									<Icon as={LinkIcon} />
+									<p>
+										<Link href="https://www.linkedin.com/in/marcellaamorim/">Acessar LinkedIn</Link>
+									</p>
+								</span>
+							</section>
+						</PopoverBody>
+					</div>
+				</PopoverContent>
+			</Popover>
+		</header>
 	)
 }
