@@ -63,19 +63,22 @@ export default function Header(props) {
 				</Menu>
 			</div>
 			}
-			{
-				isLargerThan750px ?
-					<h1 className={styles.mark}>Developer</h1>
-					:
-					<h1 className={styles.mark}>Dev</h1>
 
-			}
+			<Link href="/">
+				{
+					isLargerThan750px ?
+						<h1 className={styles.mark}>Developer</h1>
+						:
+						<h1 className={styles.mark}>Dev</h1>
+
+				}
+			</Link>
 			<div className={styles.linksTabs}>
 				{
 					isLargerThan750px &&
 					<>
 						<p>
-							<Link href="/sobre">Sobre</Link>
+							<Link href="/sobre">Sobre mim</Link>
 						</p>
 						<p>
 							<Link href="/experiencias">Experiências</Link>

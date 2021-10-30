@@ -1,4 +1,12 @@
 
+:root{
+  --background: #1E2326;
+  --bg-lighten: #373C3F;
+  --green: #77ffa5;
+  --purple:#a77fe9;
+  --white: #dadada;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -48,12 +56,12 @@ body{
 }
 
 ::-webkit-scrollbar{
-  background:black;
+  background:var(--background);
   width: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb{
-  background-color:rgb(59, 59, 59);
+  background-color:var(--green);
   border-radius: 50px;
   max-height: 1rem;
 }
