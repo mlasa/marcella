@@ -1,3 +1,10 @@
+import { Heading } from "@chakra-ui/react"
+import { BsGithub } from 'react-icons/bs'
+import { IoLogoBitbucket, IoLogoJavascript } from 'react-icons/io'
+import { DiGit, DiReact } from 'react-icons/di'
+import { FaNode } from 'react-icons/fa'
+import { SiTypescript, SiHtml5, SiCss3 } from 'react-icons/si'
+
 import styles from './styles.module.scss'
 
 export default function SkillsAndInterests() {
@@ -5,20 +12,77 @@ export default function SkillsAndInterests() {
 		<main className={styles.skillsAndInterestsContainer}>
 			<div className={styles.positionSkillsAndInterests}>
 				<div className={styles.skillsWrapper}>
-					<p>
-						Sou uma pessoa	 muito dedicada às coisas que gosto, e também muito impulsionada pela curiosidade e vontade de aprender
-						coisas novas, ainda mais quando se trata de tecnologia, que é um dos meus assuntos favoritos.
-						Tecnologia é sim um dos assuntos mais fascinantes para mim, mas não é o único que me interessa, sou alguém que gosta de
-						conhecer coisas diferentes, coisas como: História, Arte, finanças, sociologia, entre outros.
+					<section className={styles.techSkills}>
+						<Heading size="lg" className={styles.sectionTitle} >Habilidades</Heading>
 
-						A programação para mim surgiu como mais uma das cargas horárias que eu precisava cumprir para a faculdade, e também mais um
-						desafio a ser superado, pois eu pensava que não era para mim. Isso só mudou quando tive contato com a programação Web e mais
-						especificamente com o front end. Eu gostava por ser mais visual, e ao mesmo tempo tinha pessoas ao meu redor que me incentivavam
-						e gostavam do que eu conseguia fazer na época.
 
-						Eu continuei estudando sozinha, e um dia comecei a estudar back end também, e eu percebi que é tão legal quanto front end, é
-						"fazer as coisas funcionarem!".
-					</p>
+						<div className={styles.skills}>
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<SiCss3 color="inhearit" size='2rem' />
+								</p>
+							</p>
+
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<SiHtml5 color="inhearit" size='2rem' />
+								</p>
+							</p>
+
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<IoLogoJavascript color="inhearit" size='2rem' />
+								</p>
+							</p>
+
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<DiReact color="inhearit" size='2rem' />
+								</p>
+							</p>
+
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<SiTypescript color="inhearit" size='2rem' />
+								</p>
+							</p>
+
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<FaNode color="inhearit" size='2rem' />
+								</p>
+							</p>
+
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<DiGit color="inhearit" size='2rem' />
+								</p>
+							</p>
+
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<BsGithub color="inhearit" size='2rem' />
+								</p>
+							</p>
+
+							<p className={styles.wrapperBorderSkill}>
+								<p className={styles.contentSkill}>
+									<IoLogoBitbucket color="inhearit" size='2rem' />
+								</p>
+							</p>
+						</div>
+
+
+
+					</section>
+					<section className={styles.interests}>
+						<Heading size="lg" className={styles.sectionTitle} style={{ textAlign: 'center' }}>Outros interesses</Heading>
+						<ul>
+							<li>User Interface - UI</li>
+							<li>User experience - UX</li>
+							<li>Back end</li>
+						</ul>
+					</section>
 				</div>
 			</div>
 		</main>
