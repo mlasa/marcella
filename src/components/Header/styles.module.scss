@@ -1,7 +1,9 @@
 @import '../../styles/themes/index.scss';
 
 .headerContainer{
-  color:white;
+  background: var(--background);
+  color:var(--white);
+  font-family: 'Poppins', sans-serif;
   
   font-weight: 600;
 
@@ -11,6 +13,9 @@
 
   display: flex;
 
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 
   .checkBoxComponent{
     display: flex;
@@ -32,7 +37,8 @@
 
 .mark{
   font-size: 1.3rem;
-  font-family: 'Source Sans Pro', sans-serif
+  font-family: 'Source Sans Pro', sans-serif;
+  cursor: pointer;
 }
 
 
@@ -83,24 +89,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    ul{
+      display: flex;
+    }
     
-    p+p{
+    li+li{
       margin-left:2rem;
     }
 
-    p{
+    li{
       transition:  ease-in .3s;
       cursor: pointer;
+      list-style: none;
     }
     
-    p:hover{
+    li:hover{
       transition:  ease-out .3s;
 
-      background: lighten(#6deea5,5%);
-      color:#343434;
-
-      padding:0.5rem;
-      border-radius: 0.5rem;
+      color:var(--green);
     }
 }
 

@@ -21,7 +21,7 @@
 
 .photo{
   width:80%;
-  border-bottom: 3px inset #77ffa5;
+  border-bottom: 3px inset var(--green);
   border-radius: 200px;
 }
 
@@ -56,14 +56,14 @@
   }
 
   .nameHighlight{
-    color:#a77fe9;
+    color: var(--purple);
     font-family: 'Source Sans Pro', sans-serif;
 
     display: flex;
     flex-direction: column;
     span{    
       font-family: 'Source Sans Pro', sans-serif;  
-      color:#77ffa5;
+      color:var(--green);
     }
   }
 }
@@ -94,7 +94,7 @@
   left: 60px;
 
   width: 50%;
-  border-bottom: 3px inset #77ffa5;
+  border-bottom: 3px inset var(--green);
   border-radius: 200px;
 }
 

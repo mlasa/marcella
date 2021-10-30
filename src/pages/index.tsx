@@ -8,8 +8,6 @@ import { useTheme } from '../hooks/theme'
 import styles from '../styles/home.module.scss'
 import Header from '../components/Header'
 
-const cv_url = 'https://drive.google.com/file/d/1abSMIAyU9txgVDb8MTBaTq_HKNkABolP/view?usp=sharing'
-
 export default function Home({ profile }) {
 	const { globalTheme } = useTheme()
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")

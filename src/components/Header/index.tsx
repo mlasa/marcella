@@ -20,6 +20,7 @@ import {
 import { HamburgerIcon, CopyIcon, LinkIcon } from "@chakra-ui/icons"
 
 import styles from './styles.module.scss'
+import { NavLink } from '../NavLink'
 
 export default function Header(props) {
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
@@ -38,49 +39,59 @@ export default function Header(props) {
 	}
 
 	return (
-		<header className={`
+		<header
+			className={`
 				${styles.headerContainer}
 				${props.class}
 			`}
-		>{!isLargerThan750px &&
-			<div className={styles.menuHamburger}>
-				<Menu isLazy>
-					<MenuButton
-						as={IconButton}
-						aria-label="Options"
-						icon={<HamburgerIcon />}
-						variant="outline"
-						_hover={{
-							background: "none"
-						}}
-					/>
-					<MenuList>
-						<div className={styles.menuList}>
-							<MenuItem> <Link href="/sobre">Sobre</Link></MenuItem>
-							<MenuItem> <Link href="/experiencias">Experiências</Link></MenuItem>
-						</div>
-					</MenuList>
-				</Menu>
-			</div>
-			}
+		>
 			{
-				isLargerThan750px ?
-					<h1 className={styles.mark}>Developer</h1>
-					:
-					<h1 className={styles.mark}>Dev</h1>
-
+				!isLargerThan750px &&
+				<div className={styles.menuHamburger}>
+					<Menu isLazy>
+						<MenuButton
+							as={IconButton}
+							aria-label="Options"
+							icon={<HamburgerIcon />}
+							variant="outline"
+							_hover={{
+								background: "none"
+							}}
+						/>
+						<MenuList>
+							<div className={styles.menuList}>
+								<MenuItem>
+									<NavLink to="/sobre" label="Sobre" />
+								</MenuItem>
+								<MenuItem>
+									<NavLink to="/experiencias" label="Experiências" />
+								</MenuItem>
+							</div>
+						</MenuList>
+					</Menu>
+				</div>
 			}
+
+			<Link href="/">
+				{
+					isLargerThan750px ?
+						<h1 className={styles.mark}>Developer</h1>
+						:
+						<h1 className={styles.mark}>Dev</h1>
+				}
+			</Link>
+
 			<div className={styles.linksTabs}>
 				{
 					isLargerThan750px &&
-					<>
-						<p>
-							<Link href="/sobre">Sobre</Link>
-						</p>
-						<p>
-							<Link href="/experiencias">Experiências</Link>
-						</p>
-					</>
+					<ul>
+						<li>
+							<NavLink to="/sobre" label="Sobre" />
+						</li>
+						<li>
+							<NavLink to="/experiencias" label="Experiências" />
+						</li>
+					</ul>
 				}
 			</div>
 
