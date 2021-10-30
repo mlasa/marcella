@@ -1,22 +1,26 @@
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-
+import styles from './styles.module.scss'
 
 interface IProps {
-    to: String;
+	to: String;
+	label: String;
 }
 
-export function NavLink({ to }: IProps) {
-    const router = useRouter()
-    console.log('router: ', router);
-    const isActive = this.context.router.route.location.pathname === this.props.to;
-    const className = isActive ? 'active' : '';
+export function NavLink({ to, label }: IProps) {
+	const router = useRouter()
+	const [isActive, setIsActive] = useState(false)
 
-    return (
-        <span className={`${className}`}>
-            <Link href={`${to}`}>
-                {this.props.children}
-            </Link>
-        </span>
-    );
+	useEffect(() => {
+		setIsActive(router.route === to);
+	}, [])
+
+	return (
+		<nav className={`${isActive && styles.active} ${styles.nav}`}>
+			<Link href={`${to}`}>
+				{label}
+			</Link>
+		</nav>
+	);
 }
