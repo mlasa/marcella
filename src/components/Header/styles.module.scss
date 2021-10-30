@@ -83,24 +83,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    ul{
+      display: flex;
+    }
     
-    p+p{
+    li+li{
       margin-left:2rem;
     }
 
-    p{
+    li{
       transition:  ease-in .3s;
       cursor: pointer;
+      list-style: none;
     }
     
-    p:hover{
+    li:hover{
       transition:  ease-out .3s;
 
-      background: lighten(#6deea5,5%);
-      color:#343434;
-
-      padding:0.5rem;
-      border-radius: 0.5rem;
+      color:var(--green);
     }
 }
 

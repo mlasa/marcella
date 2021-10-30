@@ -73,14 +73,14 @@ export default function Header(props) {
 			<div className={styles.linksTabs}>
 				{
 					isLargerThan750px &&
-					<>
-						<p>
+					<ul>
+						<li>
 							<Link href="/sobre">Sobre</Link>
-						</p>
-						<p>
+						</li>
+						<li>
 							<Link href="/experiencias">Experiências</Link>
-						</p>
-					</>
+						</li>
+					</ul>
 				}
 			</div>
 
