@@ -7,9 +7,53 @@ import { FaNode } from 'react-icons/fa'
 import { SiTypescript, SiHtml5, SiCss3 } from 'react-icons/si'
 
 import styles from './styles.module.scss'
+import { IconType } from 'react-icons'
+
+interface ITechSkills {
+	label: string;
+	CustomTag: IconType;
+}
 
 export default function SkillsAndInterests() {
-	const [activeLegend, setActiveLegend] = useState(false)
+	const [activeLegend, setActiveLegend] = useState('')
+	const [techSkills, setTechSkills] = useState<ITechSkills[]>([
+		{
+			label: 'CSS',
+			CustomTag: SiCss3
+		},
+		{
+			label: 'HTML',
+			CustomTag: SiHtml5
+		},
+		{
+			label: 'JavaScript',
+			CustomTag: IoLogoJavascript
+		},
+		{
+			label: 'React.js',
+			CustomTag: DiReact
+		},
+		{
+			label: 'TypeScript',
+			CustomTag: SiTypescript
+		},
+		{
+			label: 'Node.js',
+			CustomTag: FaNode
+		},
+		{
+			label: 'Git',
+			CustomTag: DiGit
+		},
+		{
+			label: 'GitHub',
+			CustomTag: BsGithub
+		},
+		{
+			label: 'Bitbucket',
+			CustomTag: IoLogoBitbucket
+		}
+	])
 
 	return (
 		<main className={styles.skillsAndInterestsContainer}>
@@ -20,99 +64,25 @@ export default function SkillsAndInterests() {
 
 
 						<div className={styles.skills}>
+							{
+								techSkills.map(({ label, CustomTag }, index) =>
+									<div className={styles.skilldiv}>
+										{activeLegend === label && <small className={styles.legend}>{label}</small>}
+										<section className={styles.wrapperBorderSkill}
+											onMouseLeave={() => setActiveLegend('')}
+											onMouseOver={() => setActiveLegend(label)}
+											key={index}
+										>
+											<p className={styles.contentSkill}>
+												<CustomTag color="inhearit" size='2rem' />
+											</p>
+										</section>
+									</div>
 
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<SiCss3 color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>CSS</small>}
-							</section>
+								)
+							}
 
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<SiHtml5 color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>HTML</small>}
-							</section>
-
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<IoLogoJavascript color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>JavaScript</small>}
-							</section>
-
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<DiReact color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>React.js</small>}
-							</section>
-
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<SiTypescript color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>Typescript</small>}
-							</section>
-
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<FaNode color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>Node.js</small>}
-							</section>
-
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<DiGit color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>Git</small>}
-							</section>
-
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<BsGithub color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>GitHub</small>}
-							</section>
-
-							<section className={styles.wrapperBorderSkill}
-								onMouseLeave={() => setActiveLegend(false)}
-								onMouseOver={() => setActiveLegend(true)}
-							>
-								<p className={styles.contentSkill}>
-									<IoLogoBitbucket color="inhearit" size='2rem' />
-								</p>
-								{activeLegend && <small className={styles.legend}>Bitbucket</small>}
-							</section>
 						</div>
-
-
 
 					</section>
 					<section className={styles.interests}>

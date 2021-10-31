@@ -20,9 +20,6 @@
 	color: var(--green);
 	background: linear-gradient(90deg, rgba(109,238,164,1) 35%, rgba(167,127,233,1) 100%);
 
-	display: grid;
-	align-items: center;
-
 	.contentSkill{
 		display: grid;
 		justify-content: center;
@@ -32,11 +29,18 @@
 	}
 }
 
+.skilldiv{
+	position: relative;
+	padding-top: 2rem;
+}
+
 .legend{
 	text-align: center;
-	color: var(--background);
-	font-size: .7rem;
-	padding: .2rem;
+	width: 100%;
+	color: var(--white);
+	font-size: .8rem;
+	position: absolute;
+	top: 0;
 }
 
 .skills{
