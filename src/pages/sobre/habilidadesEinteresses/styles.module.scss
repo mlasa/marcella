@@ -13,7 +13,6 @@
 }
 
 
-
 .wrapperBorderSkill{
 	border-radius: 100px;
 	padding: .5rem;
@@ -29,26 +28,58 @@
 	}
 }
 
-.skilldiv{
+.box{
 	position: relative;
-	padding-top: 2rem;
+
+	& + .box{
+		margin: 5px;
+	}
 }
 
-.legend{
-	text-align: center;
-	width: 100%;
-	color: var(--white);
-	font-size: .8rem;
+.backIconCard{
+	backface-visibility: hidden;
+	transition: .2s;
+
+	width: 5rem;
+	height: 5rem;
+	background: linear-gradient(90deg, rgba(109,238,164,1) 35%, rgba(167,127,233,1) 100%);
+	border-radius: 50px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 1rem;
+	
+	.legend{
+		color: var(--background);
+		font-size: 0.8rem;
+	}
+}
+
+.box div:nth-child(2){
+	transform: rotateY(180deg);
+}
+
+.box:hover div:nth-child(2){
+	transform: rotateY(0deg);
+}
+
+.box:hover div:nth-child(1){
+	transform: rotateY(-180deg);
+}
+
+.skilldiv{
 	position: absolute;
-	top: 0;
 }
 
 .skills{
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 2rem;
-	column-gap: 2rem;
-	padding: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	max-width: 20rem;
+	justify-self: center;
 }
 
 .interests{
@@ -61,8 +92,23 @@
 }
 
 @media (max-width: 1220px) {
+	.techSkills{
+		display: grid;
+		padding: 1rem;
+
+		.sectionTitle{
+			justify-self: start;
+		}
+	}
+
+	.interests{
+		display: grid;
+		justify-content: start;
+		padding: 1rem;
+	}
+
 	.positionSkillsAndInterests{
-		margin-top: 4.5rem;
+		margin-top: 1.5rem;
 	}
 
 	.skillsAndInterestsContainer{
@@ -73,6 +119,17 @@
 }
 
 @media (min-width: 1220px) {
+	.techSkills{
+		display: grid;
+		justify-content: center;
+	}
+
+	.interests{
+		display: grid;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.positionSkillsAndInterests{
 		position:relative;
 		padding-top:  4.5rem;

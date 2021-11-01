@@ -62,21 +62,25 @@ export default function SkillsAndInterests() {
 					<section className={styles.techSkills}>
 						<Heading size="lg" className={styles.sectionTitle} >Habilidades</Heading>
 
-
 						<div className={styles.skills}>
 							{
 								techSkills.map(({ label, CustomTag }, index) =>
-									<div className={styles.skilldiv}>
-										{activeLegend === label && <small className={styles.legend}>{label}</small>}
-										<section className={styles.wrapperBorderSkill}
-											onMouseLeave={() => setActiveLegend('')}
-											onMouseOver={() => setActiveLegend(label)}
-											key={index}
-										>
-											<p className={styles.contentSkill}>
-												<CustomTag color="inhearit" size='2rem' />
-											</p>
-										</section>
+									<div className={styles.box}>
+
+										<div className={styles.skilldiv}>
+											<section className={styles.wrapperBorderSkill}
+												key={index}
+											>
+												<p className={styles.contentSkill}>
+													<CustomTag color="inhearit" size='2rem' />
+												</p>
+											</section>
+										</div>
+
+										<div className={styles.backIconCard}>
+											<small className={styles.legend}>{label}</small>
+										</div>
+
 									</div>
 
 								)
