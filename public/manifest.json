@@ -1,0 +1,17 @@
+{
+	"short_name": "Marcella ",
+	"name": "My mobile",
+	"icons": [
+		{
+			"src": "/favicon.ico",
+			"type": "image/x-icon",
+			"sizes": "16x16"
+		}
+	],
+	"start_url": "/",
+	"display": "standalone",
+	"scope": "/",
+	"background_color": "#a77fe9",
+	"theme_color": "#373C3F",
+	"prefer_related_applications": true
+}
