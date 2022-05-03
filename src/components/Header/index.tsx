@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
 	Popover,
@@ -15,17 +16,20 @@ import {
 	Icon,
 	useMediaQuery,
 	useToast,
-	Button
+	Button,
+	Select
 } from "@chakra-ui/react"
 import { HamburgerIcon, CopyIcon, LinkIcon } from "@chakra-ui/icons"
 import { FaRegHandPeace } from 'react-icons/fa'
 
 import styles from './styles.module.scss'
 import { NavLink } from '../NavLink'
+import { translater } from '../../components/Translater'
 
 export default function Header(props) {
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
 	const toast = useToast()
+	const [language, setLanguage] = useState('portuguese');
 
 
 	function copyToClipboard() {
@@ -38,6 +42,12 @@ export default function Header(props) {
 			duration: 2000,
 		})
 	}
+
+	useEffect(() => {
+		if (localStorage.getItem("@marcella-portfolio/language")) {
+			setLanguage(localStorage.getItem("@marcella-portfolio/language").toString());
+		}
+	}, [])
 
 	return (
 		<header
@@ -120,7 +130,7 @@ export default function Header(props) {
 						<PopoverArrow />
 						<PopoverCloseButton />
 						<PopoverHeader className={styles.popoverHeader}>
-							Estou disponível por:
+							{translater("available-contact")}
 						</PopoverHeader>
 						<PopoverBody className={styles.popoverBody}>
 							<section className={styles.listSection}>
@@ -141,6 +151,25 @@ export default function Header(props) {
 					</div>
 				</PopoverContent>
 			</Popover>
+
+			<div style={{ width: "100px", marginLeft: "3rem" }}>
+				<Select placeholder='Idioma' variant='filled' color="black"
+					_hover={{
+						background: "white",
+					}}
+
+					onChange={(e) => {
+						console.log("opa: ", e);
+						setLanguage(e.target.value);
+
+						localStorage.setItem("@marcella-portfolio/language", e.target.value);
+					}}
+					value={language}
+				>
+					<option value='english'>English</option>
+					<option value='portuguese'>Português</option>
+				</Select>
+			</div>
 		</header >
 	)
 }
