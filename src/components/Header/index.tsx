@@ -25,6 +25,7 @@ import { FaRegHandPeace } from 'react-icons/fa'
 import styles from './styles.module.scss'
 import { NavLink } from '../NavLink'
 import { translater } from '../../components/Translater'
+import createRouteLoader from 'next/dist/client/route-loader'
 
 export default function Header(props) {
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
@@ -47,7 +48,7 @@ export default function Header(props) {
 		if (localStorage.getItem("@marcella-portfolio/language")) {
 			setLanguage(localStorage.getItem("@marcella-portfolio/language").toString());
 		}
-	}, [])
+	}, [language])
 
 	return (
 		<header
@@ -102,10 +103,10 @@ export default function Header(props) {
 					isLargerThan750px &&
 					<ul>
 						<li>
-							<NavLink to="/sobre" label="Sobre" />
+							<NavLink to="/sobre" label={translater("about-nav-menu")} />
 						</li>
 						<li>
-							<NavLink to="/experiencias" label="Experiências" />
+							<NavLink to="/experiencias" label={translater("experiencies-nav-menu")} />
 						</li>
 					</ul>
 				}
@@ -123,7 +124,9 @@ export default function Header(props) {
 						_hover={{
 							background: "#f8a6f8",
 						}}
-					>Contato</Button>
+					>
+						{translater("contact")}
+					</Button>
 				</PopoverTrigger>
 				<PopoverContent>
 					<div className={styles.popoverContent}>
@@ -143,7 +146,7 @@ export default function Header(props) {
 								<span>
 									<Icon as={LinkIcon} />
 									<p>
-										<Link href="https://www.linkedin.com/in/marcellaamorim/">Acessar LinkedIn</Link>
+										<Link href="https://www.linkedin.com/in/marcellaamorim/">{translater("access-linkedin")}</Link>
 									</p>
 								</span>
 							</section>
@@ -163,6 +166,8 @@ export default function Header(props) {
 						setLanguage(e.target.value);
 
 						localStorage.setItem("@marcella-portfolio/language", e.target.value);
+
+						location.reload();
 					}}
 					value={language}
 				>

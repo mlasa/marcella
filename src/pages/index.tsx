@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import { Badge } from "@chakra-ui/react"
 
 import { useMediaQuery } from "@chakra-ui/react"
 
 import styles from '../styles/home.module.scss'
 import Header from '../components/Header'
 import { Error } from '../components/Error'
+import { translater } from '../components/Translater'
 
 export default function Home({ profile }) {
-	console.log('profile: ', profile);
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
 	const [isWideScreen, setIsWideScreen] = useState(false);
 
@@ -27,11 +26,11 @@ export default function Home({ profile }) {
 					<div className={styles.content} >
 						<div className={styles.contentWrapper}>
 							<span className={styles.tag}>
-								🚧 Essa página está sendo atualizada 👷‍♀️
+								{translater("page-bein-updated")}
 							</span>
 							<span className={styles.tag}>
-								Olá, sou uma desenvolvedora full-stack em Campinas - SP - Brasil
-								<img src="flag-brazil.png" alt="Bandeira do Brasil" width="30px" style={{ margin: '0 .5rem' }} /> !
+								{translater("tag-introduce")}
+								<img src="flag-brazil.png" alt="Bandeira do Brasil" width="30px" style={{ margin: '0 .5rem' }} />
 							</span>
 
 							<header className={styles.headerMe}>
