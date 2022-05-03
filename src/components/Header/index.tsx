@@ -18,6 +18,7 @@ import {
 	Button
 } from "@chakra-ui/react"
 import { HamburgerIcon, CopyIcon, LinkIcon } from "@chakra-ui/icons"
+import { FaRegHandPeace } from 'react-icons/fa'
 
 import styles from './styles.module.scss'
 import { NavLink } from '../NavLink'
@@ -75,7 +76,12 @@ export default function Header(props) {
 			<Link href="/">
 				{
 					isLargerThan750px ?
-						<h1 className={styles.mark}>Developer</h1>
+						<>
+							<FaRegHandPeace size={20} />
+							<h1 className={styles.mark}>
+								Marcella
+							</h1>
+						</>
 						:
 						<h1 className={styles.mark}>Dev</h1>
 				}
@@ -102,10 +108,10 @@ export default function Header(props) {
 			>
 				<PopoverTrigger>
 					<Button
-						borderColor="#a77fe9"
+						borderColor="#f8a6f8"
 						variant="outline"
 						_hover={{
-							background: "#956dd4",
+							background: "#f8a6f8",
 						}}
 					>Contato</Button>
 				</PopoverTrigger>
@@ -135,6 +141,6 @@ export default function Header(props) {
 					</div>
 				</PopoverContent>
 			</Popover>
-		</header>
+		</header >
 	)
 }

@@ -1,100 +1,45 @@
 @import './themes/index.scss';
 
 .containerHome{
-  background:#1E2326;
+  background:var(--background);
   height: 100vh;
+
+  display: grid;
 }
 .header{
-  height: 10%;
+  height: 4.5rem;
 }
 
 .content{
-  height: 90%;
+	position:absolute;
+	margin-top: 4.5rem;
+	height: calc(100vh - 4.5rem);
+	width: 100%;
 
-  display:grid;
-  grid-template-areas:
-  "texts photo";
+	padding: 1rem;
+	color: var(--white);
 
-  align-items: center;
-  justify-content: center;
-}
-
-.photo{
-  width:80%;
-  border-bottom: 3px inset var(--green);
-  border-radius: 200px;
-}
-
-.me{
-  padding-bottom: 5rem;
-	grid-area:photo;
-  height: 100%;
-
-  display:flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex:1;
-}
-
-.texts{
-	grid-area: texts;
-  color:white;
-  padding:1rem;
-  font-weight: bolder;
-  max-height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 
-  h2{
-    font-size: 2rem;
-    font-family: 'Source Sans Pro', sans-serif;
+  .tag{
+	  background: var(--black-200);
+	  color: var(--white);
+	  padding: 1rem;
+	  border-radius: 10px;
+	  width: 60%;
+
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  box-shadow: 5px 10px  5px rgba( #000000, .3);
+
+	  & + .tag{
+		  margin:.5rem 0;
+	  }
   }
 
-  h1{
-    line-height: 1;
-    font-size: 3rem;
-    font-family: 'Source Sans Pro', sans-serif;
-  }
-
-  .nameHighlight{
-    color: var(--purple);
-    font-family: 'Source Sans Pro', sans-serif;
-
-    display: flex;
-    flex-direction: column;
-    span{    
-      font-family: 'Source Sans Pro', sans-serif;  
-      color:var(--green);
-    }
-  }
 }
-.skills{
-  margin-top: 1.5rem;
-  max-width: 90%;
-
-  .skill{
-    & + .skill{
-      margin:.3rem;
-    }
-  }
-}
-
-.contentMobile{
-  display:flex;
-  flex-direction: column;
-}
-
-.meMobile{
-  display:flex;
-  justify-content: center;
-}
-
-.photoMobile{
-  position: relative;
-  top:90px;
-  left: 60px;
-
-  width: 50%;
-  border-bottom: 3px inset var(--green);
-  border-radius: 200px;
-}
-

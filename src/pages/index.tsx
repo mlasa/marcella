@@ -4,65 +4,76 @@ import { Badge } from "@chakra-ui/react"
 
 import { useMediaQuery } from "@chakra-ui/react"
 
-import { useTheme } from '../hooks/theme'
 import styles from '../styles/home.module.scss'
 import Header from '../components/Header'
+import { Error } from '../components/Error'
 
 export default function Home({ profile }) {
-	const { globalTheme } = useTheme()
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
 	const [isWideScreen, setIsWideScreen] = useState(false);
 
-	useEffect(() => setIsWideScreen(isLargerThan750px), [isLargerThan750px])
-
+	//useEffect(() => setIsWideScreen(isLargerThan750px), [isLargerThan750px])
 
 	return (
-		<div className={`${styles.containerHome}`}>
-			<Head>
-				<title> Marcella Dev | Welcome</title>
-			</Head>
-			{<Header class={styles.header} />}
+		<>
+			{profile ?
+				<div className={`${styles.containerHome}`}>
+					<Head>
+						<title> Marcella Amorim S.A. - Homepage</title>
+					</Head>
+					<Header class={styles.header} />
 
-			<div className={`
-				${isWideScreen ? styles.content : styles.contentMobile}
-			`}>
-				<section className={`${isWideScreen ? styles.me : styles.meMobile}`}>
-					<img
-						className={`${isWideScreen ? styles.photo : styles.photoMobile}`}
-						src="mbg.png"
-						alt="Foto de Marcella"
-					/>
-				</section>
-
-				<section className={`${styles.texts}`}>
-					<h2>Olá,</h2>
-					<h1>sou a
-						<span className={styles.nameHighlight}>
-							Marcella
-							<span>Front end developer</span>
+					<div className={styles.content} >
+						<span className={styles.tag}>
+							🚧 Essa página está sendo atualizada 👷‍♀️
 						</span>
-					</h1>
-
-					<div className={styles.skills}>
-						{profile.tags.map(skill =>
-							<Badge key={skill} fontSize="sm" colorScheme="green" className={styles.skill}>{skill}</Badge>
-						)}
+						<span className={styles.tag}>
+							Olá, sou uma desenvolvedora full-stack em Campinas - SP - Brasil
+							<img src="flag-brazil.png" alt="Bandeira do Brasil" width="30px" style={{ margin: '0 .5rem' }} /> !
+						</span>
 					</div>
-				</section>
-			</div>
-		</div>
+
+				</div>
+				:
+				<Error title="Oh não 😔" message="Não foi possível recuperar os dados" />
+			}
+		</>
 	)
 }
 
 export async function getStaticProps() {
 
-	const response = await fetch('https://mypagemlasa.herokuapp.com/profile', { method: "GET" })
-	const data = await response.json()
+	try {
+		const response = await fetch('https://mypagemlasa.herokuapp.com/profile', { method: "GET" })
+		const data = await response.json()
 
-	return {
-		props: {
-			profile: data[0]
+		if (data[0]) {
+			console.log("Entrei nesse");
+			return {
+				props: {
+					profile: data[0]
+				},
+				revalidate: 60 * 60 * 24
+			}
+		} else {
+			console.log("Não, nesse");
+			return {
+				props: {
+					profile: {}
+				},
+				revalidate: 60 * 60 * 24
+			}
+		}
+	} catch (error) {
+		console.log("Deu boa não: \n", error, '\n');
+
+		return {
+			props: {
+				notFound: true
+			},
+			revalidate: 60 * 60 * 24
 		}
 	}
+
 
 }
