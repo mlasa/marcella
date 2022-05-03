@@ -9,6 +9,7 @@ import Header from '../components/Header'
 import { Error } from '../components/Error'
 
 export default function Home({ profile }) {
+	console.log('profile: ', profile);
 	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
 	const [isWideScreen, setIsWideScreen] = useState(false);
 
@@ -24,14 +25,25 @@ export default function Home({ profile }) {
 					<Header class={styles.header} />
 
 					<div className={styles.content} >
-						<span className={styles.tag}>
-							🚧 Essa página está sendo atualizada 👷‍♀️
-						</span>
-						<span className={styles.tag}>
-							Olá, sou uma desenvolvedora full-stack em Campinas - SP - Brasil
-							<img src="flag-brazil.png" alt="Bandeira do Brasil" width="30px" style={{ margin: '0 .5rem' }} /> !
-						</span>
+						<div className={styles.contentWrapper}>
+							<span className={styles.tag}>
+								🚧 Essa página está sendo atualizada 👷‍♀️
+							</span>
+							<span className={styles.tag}>
+								Olá, sou uma desenvolvedora full-stack em Campinas - SP - Brasil
+								<img src="flag-brazil.png" alt="Bandeira do Brasil" width="30px" style={{ margin: '0 .5rem' }} /> !
+							</span>
+
+							<header className={styles.headerMe}>
+								<span>
+									<h1>{profile.name}</h1>
+									<p>Fullstack developer - Cesla ( WS Solution )</p>
+								</span>
+								<img src="me1.jpeg" alt="Marcella" width="200px" style={{ borderRadius: "100px" }} />
+							</header>
+						</div>
 					</div>
+
 
 				</div>
 				:
