@@ -45,8 +45,8 @@ export default function Header(props) {
 	}
 
 	useEffect(() => {
-		if (localStorage.getItem("@marcella-portfolio/language")) {
-			setLanguage(localStorage.getItem("@marcella-portfolio/language").toString());
+		if (localStorage.getItem("@marcella-homepage/language")) {
+			setLanguage(localStorage.getItem("@marcella-homepage/language").toString());
 		}
 	}, [language])
 
@@ -57,7 +57,7 @@ export default function Header(props) {
 				${props.class}
 			`}
 		>
-			{
+		{/* 	{
 				!isLargerThan750px &&
 				<div className={styles.menuHamburger}>
 					<Menu isLazy>
@@ -73,16 +73,16 @@ export default function Header(props) {
 						<MenuList>
 							<div className={styles.menuList}>
 								<MenuItem>
-									<NavLink to="/sobre" label="Sobre" />
+									<NavLink to="/sobre" label={translater("about-nav-menu")} />
 								</MenuItem>
 								<MenuItem>
-									<NavLink to="/experiencias" label="Experiências" />
+									<NavLink to="/experiencias" label={translater("experiencies-nav-menu")} />
 								</MenuItem>
 							</div>
 						</MenuList>
 					</Menu>
 				</div>
-			}
+			} */}
 
 			<Link href="/">
 				{
@@ -98,19 +98,19 @@ export default function Header(props) {
 				}
 			</Link>
 
-			<div className={styles.linksTabs}>
+			{/* <div className={styles.linksTabs}>
 				{
 					isLargerThan750px &&
 					<ul>
 						<li>
 							<NavLink to="/sobre" label={translater("about-nav-menu")} />
 						</li>
-						<li>
+							<li>
 							<NavLink to="/experiencias" label={translater("experiencies-nav-menu")} />
 						</li>
 					</ul>
 				}
-			</div>
+			</div> */}
 
 			<Popover
 				styleConfig={{
@@ -165,7 +165,7 @@ export default function Header(props) {
 						console.log("opa: ", e);
 						setLanguage(e.target.value);
 
-						localStorage.setItem("@marcella-portfolio/language", e.target.value);
+						localStorage.setItem("@marcella-homepage/language", e.target.value);
 
 						location.reload();
 					}}

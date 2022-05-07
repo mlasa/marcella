@@ -40,10 +40,30 @@ export default function Home({ profile }) {
 								</span>
 								<img src="me1.jpeg" alt="Marcella" width="200px" style={{ borderRadius: "100px" }} />
 							</header>
+
+							<div className={styles.more}>
+								<section>
+									{/* <h1>{translater("work")}</h1> */}
+									<p>{translater("more-me")}</p>
+								</section>
+
+								<section>
+									<h1 className={styles.titleSection}>{translater("work")}</h1>
+									<p>{translater("job")}</p>
+								</section>
+
+								<section>
+									<h1 className={styles.titleSection}>{translater("background")}</h1>
+									<p>{translater("background-text")}</p>
+								</section>
+
+								<section>
+									<h1 className={styles.titleSection}>{translater("i-like")}</h1>
+									<p>{translater("i-like-text")}</p>
+								</section>
+							</div>
 						</div>
 					</div>
-
-
 				</div>
 				:
 				<Error title="Oh não 😔" message="Não foi possível recuperar os dados" />
@@ -64,17 +84,10 @@ export async function getStaticProps() {
 				props: {
 					profile: data[0]
 				},
-				revalidate: 60 * 60 * 24
-			}
-		} else {
-			console.log("Não, nesse");
-			return {
-				props: {
-					profile: {}
-				},
-				revalidate: 60 * 60 * 24
+				/* revalidate: 60 * 60 * 24 */
 			}
 		}
+
 	} catch (error) {
 		console.log("Deu boa não: \n", error, '\n');
 
@@ -82,7 +95,7 @@ export async function getStaticProps() {
 			props: {
 				notFound: true
 			},
-			revalidate: 60 * 60 * 24
+			/* revalidate: 60 * 60 * 24 */
 		}
 	}
 

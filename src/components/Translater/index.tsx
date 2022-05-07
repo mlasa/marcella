@@ -9,8 +9,8 @@ export function translater(id: string): string {
 	const file = language === "portuguese" ? ptBr : enUs;
 
 	useEffect(() => {
-		if (localStorage.getItem("@marcella-portfolio/language")) {
-			setLanguage(localStorage.getItem("@marcella-portfolio/language").toString());
+		if (localStorage.getItem("@marcella-homepage/language")) {
+			setLanguage(localStorage.getItem("@marcella-homepage/language").toString());
 		}
 	}, [])
 
