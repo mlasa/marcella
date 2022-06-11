@@ -10,7 +10,7 @@ import api from '../../services/api'
 
 export default function Login() {
 	const [password, setPassword] = useState('')
-	const [email, setEmail] = useState('')
+	const [access, setAccess] = useState('')
 	const router = useRouter()
 	const toast = useToast()
 
@@ -20,9 +20,9 @@ export default function Login() {
 		})
 	}
 
-	function login(email, password): void {
+	function login(access, password): void {
 
-		!email && !password &&
+		!access && !password &&
 			toast({
 				title: "Você precisa informar as credenciais",
 				description: "Preecha senha e e-mail",
@@ -32,7 +32,7 @@ export default function Login() {
 			})
 
 
-		api.post('/session', { email: email, password: password })
+		api.post('/session', { email: access, username: access, password: password })
 			.then(response => {
 				const { token, user } = response.data
 
@@ -85,10 +85,10 @@ export default function Login() {
 					<Heading size="lg">Acesso ao painel</Heading>
 					<div className={styles.boxLogin}>
 						<Input
-							value={email}
+							value={access}
 							variant="outline"
 							placeholder="E-mail ou nome de usuário"
-							onChange={(event) => setEmail(event.target.value)}
+							onChange={(event) => setAccess(event.target.value)}
 							autoFocus={true}
 						/>
 						<Input
@@ -98,9 +98,9 @@ export default function Login() {
 							placeholder="*****"
 							onChange={(event) => setPassword(event.target.value)}
 						/>
-						{email && password ?
+						{access && password ?
 							<Button
-								onClick={() => login(email, password)}
+								onClick={() => login(access, password)}
 								colorScheme="cyan"
 							>
 								Entrar
