@@ -55,7 +55,7 @@ export default function Dashboard() {
 					<Button
 						onClick={logOut}
 						size="sm"
-						variant="link"
+						colorScheme='red'
 					>Sair</Button>
 				</div>
 
@@ -76,13 +76,17 @@ export default function Dashboard() {
 									<Heading size="md">Informações na homepage</Heading>
 									<Input variant="filled" placeholder="Nome" value={user.name || ''} onChange={(e) => setUser({ ...user, name: e.target.value })} />
 									<Input variant="filled" placeholder="Cargo" />
-									<Textarea
-										variant="filled"
-										placeholder="O que mais tem a contar?"
-									/>
+									<Button colorScheme='green' size='md'>
+										Salvar
+									</Button>
+
 									<Heading size="md" style={{ marginTop: '2rem' }}>Dados de usuário</Heading>
 									<Input variant="filled" placeholder="Usuário" value={user.username || ''} onChange={(e) => setUser({ ...user, username: e.target.value })} />
 									<Input variant="filled" placeholder="E-mail" value={user.email || ''} onChange={(e) => setUser({ ...user, email: e.target.value })} />
+									<Input variant="filled" placeholder="Nova senha" value={''} />
+									<Button colorScheme='green' size='md'>
+										Salvar
+									</Button>
 								</Stack>
 							</form>
 						</div>
