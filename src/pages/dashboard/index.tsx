@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -11,7 +11,19 @@ import {
 	Textarea,
 	Stack,
 	Heading,
-	Divider
+	Divider,
+	useDisclosure,
+	Modal,
+	ModalOverlay,
+	ModalHeader,
+	ModalCloseButton,
+	ModalContent,
+	ModalBody,
+	ModalFooter,
+	useToast,
+	Tag,
+	TagLabel,
+	TagCloseButton
 } from "@chakra-ui/react";
 
 import api from "../../services/api";
@@ -25,6 +37,7 @@ interface IUser {
 }
 
 interface IProfile {
+	_id: string;
 	description: string;
 	tags: Array<string>;
 	name: string;
@@ -32,10 +45,15 @@ interface IProfile {
 }
 
 export default function Dashboard() {
-	const router = useRouter()
-	const [user, setUser] = useState<IUser>({} as IUser)
+	const router = useRouter();
+	const [user, setUser] = useState<IUser>({} as IUser);
 	const [profile, setProfile] = useState<IProfile>({} as IProfile);
-	console.log('profile: ', profile);
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [scrollBehavior, setScrollBehavior] = useState('inside');
+	const btnRef = useRef(null);
+	const [newTag, setNewTag] = useState("");
+	const toast = useToast();
+	const [errorNewTag, setErrorNewTag] = useState("");
 
 	function logOut(): void {
 		Cookie.remove('@mlasaPortfolio')
@@ -56,6 +74,57 @@ export default function Dashboard() {
 		const newArray = profile.tags.filter((tag, index) => index !== indexTag)
 		setProfile({ ...profile, tags: newArray });
 	}
+
+	function saveNewTag(newTag: string) {
+		if (!newTag) {
+			setErrorNewTag("Preencha o campo");
+			return;
+		}
+		else {
+			setErrorNewTag("");
+		}
+
+		const storedInCookiesBrowser = JSON.parse(Cookie.get("@mlasaPortfolio"));
+
+		const config = {
+			headers: { authorization: `Bearer ${storedInCookiesBrowser.token}` }
+		};
+
+		setProfile({ ...profile, tags: [...profile.tags, newTag] })
+		api.put(`/profile/${profile._id}`, { tags: profile.tags }, config)
+			.then(response => {
+				console.log('response: \n', response);
+
+
+				toast({
+					title: "Tag adicionada!",
+					status: "success",
+					duration: 9000,
+					isClosable: true,
+				})
+			})
+			.catch(error => {
+				console.log("Error: ", error);
+
+				const tagsFiltered = profile.tags.filter(tag => tag !== newTag);
+
+				setProfile({ ...profile, tags: tagsFiltered });
+
+				toast({
+					title: (error.response && error.response.data.message) ?
+						error.response.data.errorMessage
+						:
+						"Não foi possível adicionar a nova tag.",
+					status: "error",
+					duration: 9000,
+					isClosable: true,
+				})
+			})
+		setNewTag("");
+	}
+
+
+
 
 	// Will check if user is already logged in by client side
 	useEffect(() => {
@@ -80,6 +149,41 @@ export default function Dashboard() {
 			<Head>
 				<title> Marcella Dev | Dashboard</title>
 			</Head>
+
+			<Modal
+				onClose={() => {
+					onClose();
+					setNewTag("");
+				}}
+				finalFocusRef={btnRef}
+				isOpen={isOpen}
+				//scrollBehavior="inside"
+				scrollBehavior={scrollBehavior}
+			>
+				<ModalOverlay />
+				<ModalContent>
+					<ModalHeader>Qual será a nova tag?</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody>
+						<Input
+							variant="filled"
+							placeholder="ex.: Pacote Office"
+							value={newTag || ""}
+							onChange={(e) => {
+								if (errorNewTag && e.target.value) {
+									setErrorNewTag("");
+								}
+
+								setNewTag(e.target.value);
+							}}
+						/>
+						<small className={styles.errorStyle}>{errorNewTag}</small>
+					</ModalBody>
+					<ModalFooter>
+						<Button colorScheme="green" onClick={() => saveNewTag(newTag)}>Adicionar</Button>
+					</ModalFooter>
+				</ModalContent>
+			</Modal>
 
 			<div className={styles.dashboardContainer}>
 				<div className={styles.header}>
@@ -134,15 +238,35 @@ export default function Dashboard() {
 											</Button> */}
 										<Divider />
 										<div className={styles.tags}>
-											<Heading size="md">Palavras chave</Heading>
+											<div className={styles.groupAddTag}>
+												<Heading size="md">Palavras chave</Heading>
+												<Button
+													colorScheme='facebook'
+													variant='solid'
+													size="md"
+													ref={btnRef}
+													onClick={onOpen}
+												>
+													Adicionar
+												</Button>
+											</div>
 											<div className={styles.wrappertags}>
 												{
 													profile.tags &&
 													profile.tags.map((tag, index) => {
-														return <div key={`${tag}${index}`} className={styles.tag}>
-															<p>{tag}</p>
-															<button type="button" onClick={(e) => removeTag(e, index)}>X</button>
-														</div>;
+														return (
+															<Tag
+																className={styles.tag}
+																size="sm"
+																key={index}
+																borderRadius='full'
+																variant='solid'
+																colorScheme='red'
+															>
+																<TagLabel>{tag}</TagLabel>
+																<TagCloseButton onClick={(e) => removeTag(e, index)} />
+															</Tag>
+														)
 													})
 												}
 											</div>

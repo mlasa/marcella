@@ -1,5 +1,5 @@
 .dashboardContainer{
-    background: #0a1536;
+    background: #0D0126;
     min-height:100vh;
     padding:1rem;
 }
@@ -43,7 +43,7 @@
 		}
         &:hover{
             &::marker{
-                color:#ff0095;
+                color:#F20530;
             }
         }
     
@@ -77,50 +77,36 @@
 	}
 }
 
-.tags{
-	
-	div{
-		padding: 1rem;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		max-width: 400px;
-		margin: 0 auto;
+.wrappertags{
+	padding: 1rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.tag{
+	/* width: 150px; */
+	padding: .5rem;
+	margin: 2px 5px;
+
+	button{
+		padding-right:0 ;
+		max-width: 10px;
+		margin: 0 5px;
 	}
-	
-	.tag{
-		border-radius: 8px;
-		background: #ff0095;
-		padding: .5rem;
-		text-align: center;
-		font-weight: bold;
-		margin: 8px 0;
+}
 
-		color: #13255a;
+.groupAddTag{
+	width: 100%;
+	display: flex;
+	align-items: center;
 
-		display: flex;
-		align-items: center;
-		justify-content:center;
-
-		button{
-			display: inline;
-			max-width: 40px;
-			font-weight: bolder;
-			padding: 1px;
-			margin: 0 2px;
-
-			&:hover{
-				background: #d6007d;
-			}
-		}
-
-
-		& + .tag:nth-child(odd){
-			margin: 8px -30px;
-		}
-		& + .tag:nth-child(even){
-			margin: 8px 40px;
-		}
+	button{
+		margin-left: 1rem;
+		width: 100px;
 	}
+}
+
+.errorStyle{
+	color: red;
 }
