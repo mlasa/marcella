@@ -61,7 +61,7 @@ export default function Dashboard() {
 		router.push('/login')
 	}
 
-	async function getUser(): any {
+	async function getUser(): Promise<any> {
 		const responseRaw = await api({
 			url: "/profile",
 			method: "GET"
