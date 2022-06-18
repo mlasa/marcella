@@ -4,7 +4,7 @@ const localApi = 'http://localhost:3333';
 const productionApi = 'https://mypagemlasa.herokuapp.com';
 
 const api = axios.create({
-	baseURL: localApi,
+	baseURL: productionApi,
 	headers: {
 		"Content-Type": "application/json",
 		"Access-Control-Allow-Origin": "*",
