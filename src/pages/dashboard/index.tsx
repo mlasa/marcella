@@ -165,8 +165,8 @@ export default function Dashboard() {
 				}}
 				finalFocusRef={btnRef}
 				isOpen={isOpen}
-				//scrollBehavior="inside"
-				scrollBehavior={scrollBehavior}
+				scrollBehavior="inside"
+			//scrollBehavior={scrollBehavior}
 			>
 				<ModalOverlay />
 				<ModalContent>
