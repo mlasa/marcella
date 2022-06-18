@@ -1,5 +1,5 @@
 .dashboardContainer{
-    background: #0D0126;
+    background: #001A24;
     min-height:100vh;
     padding:1rem;
 }
@@ -9,7 +9,9 @@
     grid-auto-flow: column;
     justify-content: space-between;
     h1{
-        color:#d6d6d6;
+		color: #dd6b20;
+		font-family: 'Caveat', cursive;
+		font-size: 2rem;
     }
 }
 
@@ -43,40 +45,16 @@
 		}
         &:hover{
             &::marker{
-                color:#F20530;
+                color:#dd6b20;
             }
         }
     
     }
 }
 
-.formWrapper{
-    background:#d6d6d6;
-    border-radius: 0.3rem;
-    padding:1rem;
-    margin-left: 0.5rem;
-
-    flex:1;
-
-    form{
-        display: grid;
-        grid-auto-flow: row;
-    }
-
-	button{
-		width: 400px;
-		margin: 0 auto;
-	}
-}
-
-.section{
+.tags{
 	padding: 1rem;
-
-	&> h2:nth-child(1){
-		margin-bottom: 1rem;
-	}
 }
-
 .wrappertags{
 	padding: 1rem;
 	display: flex;
@@ -85,15 +63,9 @@
 	align-items: center;
 }
 .tag{
-	/* width: 150px; */
-	padding: .5rem;
 	margin: 2px 5px;
-
-	button{
-		padding-right:0 ;
-		max-width: 10px;
-		margin: 0 5px;
-	}
+	padding: 0.5rem;
+	background: #dd6b20;
 }
 
 .groupAddTag{
@@ -104,9 +76,56 @@
 	button{
 		margin-left: 1rem;
 		width: 100px;
+		background: #04b65d;
+		&:hover{
+			background: #2ca751;
+		}
 	}
 }
 
 .errorStyle{
 	color: red;
+}
+
+.groupProfile{
+	width: 100%;
+	
+	display: flex;
+	flex-direction: column;
+
+	input + input{
+		margin: 5px 0;
+	}
+
+	h2{
+		color: #dd6b20;
+		font-family: 'Caveat', cursive;
+		font-size: 2.2rem;
+
+		margin: 1rem 0;
+	}
+	
+	.pageTitle{
+		color: #34c35f;
+		font-family: 'Bebas Neue', cursive;
+		font-weight: 400;
+		font-size: 3rem;
+		text-align: center;
+	}
+	
+	.inputGroupProfile {
+		display: flex;
+		flex-direction: column;
+		
+		padding: 1rem;
+	}
+	
+	>button{
+		margin-top: 1rem;
+		background: #34c35f;
+
+		&:hover{
+			background: #2ca751;
+		}
+	}
 }

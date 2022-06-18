@@ -2,6 +2,7 @@ Disponível em : http://marcella.vercel.app
 
 
 ![Screenshot](marcella.png)
+![Screenshot](edicao.png)
 
 
 ### Techs

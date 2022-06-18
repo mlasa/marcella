@@ -23,7 +23,8 @@ import {
 	useToast,
 	Tag,
 	TagLabel,
-	TagCloseButton
+	TagCloseButton,
+	InputGroup
 } from "@chakra-ui/react";
 
 import api from "../../services/api";
@@ -84,46 +85,53 @@ export default function Dashboard() {
 			setErrorNewTag("");
 		}
 
+		setProfile({ ...profile, tags: [...profile.tags, newTag] });
+
+		setNewTag("");
+	}
+
+	function saveProfile() {
+
 		const storedInCookiesBrowser = JSON.parse(Cookie.get("@mlasaPortfolio"));
 
 		const config = {
 			headers: { authorization: `Bearer ${storedInCookiesBrowser.token}` }
 		};
 
-		setProfile({ ...profile, tags: [...profile.tags, newTag] })
-		api.put(`/profile/${profile._id}`, { tags: profile.tags }, config)
+
+		const body = {
+			tags: profile.tags,
+			name: profile.name,
+			description: profile.description,
+			job: profile.job
+		}
+
+		api.put(`/profile/${profile._id}`, body, config)
 			.then(response => {
 				console.log('response: \n', response);
 
-
 				toast({
-					title: "Tag adicionada!",
+					title: "Perfil atualizado!",
 					status: "success",
 					duration: 9000,
 					isClosable: true,
-				})
+				});
 			})
 			.catch(error => {
 				console.log("Error: ", error);
 
-				const tagsFiltered = profile.tags.filter(tag => tag !== newTag);
-
-				setProfile({ ...profile, tags: tagsFiltered });
 
 				toast({
 					title: (error.response && error.response.data.message) ?
 						error.response.data.errorMessage
 						:
-						"Não foi possível adicionar a nova tag.",
+						"Não foi possível atualizar...",
 					status: "error",
 					duration: 9000,
 					isClosable: true,
 				})
 			})
-		setNewTag("");
 	}
-
-
 
 
 	// Will check if user is already logged in by client side
@@ -180,14 +188,14 @@ export default function Dashboard() {
 						<small className={styles.errorStyle}>{errorNewTag}</small>
 					</ModalBody>
 					<ModalFooter>
-						<Button colorScheme="green" onClick={() => saveNewTag(newTag)}>Adicionar</Button>
+						<Button size="sm" colorScheme="green" onClick={() => saveNewTag(newTag)}>Adicionar</Button>
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
 
 			<div className={styles.dashboardContainer}>
 				<div className={styles.header}>
-					<h1>Olá {user?.name?.split(' ')[0]}</h1>
+					<h1>Hey {user?.name?.split(' ')[0]}!</h1>
 					<Button
 						onClick={logOut}
 						size="sm"
@@ -205,7 +213,131 @@ export default function Dashboard() {
 						</UnorderedList>
 					</section>
 
-					<section className={styles.formWrapper}>
+					<section className={styles.groupProfile}>
+						<Heading size="lg" className={styles.pageTitle}>Edição</Heading>
+
+						<InputGroup size="sm" className={styles.inputGroupProfile}>
+							<Heading size="md">Informações da home</Heading>
+							<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
+							<Input variant="filled" placeholder="Cargo"
+								value={profile.job || ""}
+								onChange={(e) => {
+									if (!profile.hasOwnProperty("job")) {
+										Object.assign(profile, { ...profile, job: e.target.value })
+
+									} else {
+										setProfile({ ...profile, job: e.target.value })
+									}
+
+								}}
+							/>
+							<Textarea
+								variant="filled"
+								placeholder='Descrição'
+								size='sm'
+								onChange={(e) => setProfile({ ...profile, description: e.target.value })}
+								value={profile.description || ""}
+							/>
+						</InputGroup>
+
+						<div className={styles.tags}>
+							<div className={styles.groupAddTag}>
+								<Heading size="md">Palavras chave</Heading>
+								<Button
+									colorScheme='facebook'
+									variant='solid'
+									size="md"
+									ref={btnRef}
+									onClick={onOpen}
+								>
+									Adicionar
+								</Button>
+							</div>
+							<div className={styles.wrappertags}>
+								{
+									profile.tags &&
+									profile.tags.map((tag, index) => {
+										return (
+											<Tag
+												className={styles.tag}
+												size="sm"
+												key={index}
+												borderRadius='full'
+												variant='solid'
+												colorScheme='orange'
+											>
+												<TagLabel>{tag}</TagLabel>
+												<TagCloseButton onClick={(e) => removeTag(e, index)} />
+											</Tag>
+										)
+									})
+								}
+							</div>
+						</div>
+						{/* <Stack spacing={2}>
+							<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
+							<Input variant="filled" placeholder="Cargo"
+								value={profile.job || ""}
+								onChange={(e) => {
+									if (!profile.hasOwnProperty("job")) {
+										Object.assign(profile, { ...profile, job: e.target.value })
+
+									} else {
+										setProfile({ ...profile, job: e.target.value })
+									}
+
+								}}
+							/>
+							<Textarea
+								variant="filled"
+								placeholder='Descrição'
+								size='sm'
+								onChange={(e) => setProfile({ ...profile, description: e.target.value })}
+								value={profile.description || ""}
+							/>
+
+
+							<div className={styles.tags}>
+								<div className={styles.groupAddTag}>
+									<Heading size="md">Palavras chave</Heading>
+									<Button
+										colorScheme='facebook'
+										variant='solid'
+										size="md"
+										ref={btnRef}
+										onClick={onOpen}
+									>
+										Adicionar
+									</Button>
+								</div>
+								<div className={styles.wrappertags}>
+									{
+										profile.tags &&
+										profile.tags.map((tag, index) => {
+											return (
+												<Tag
+													className={styles.tag}
+													size="sm"
+													key={index}
+													borderRadius='full'
+													variant='solid'
+													colorScheme='red'
+												>
+													<TagLabel>{tag}</TagLabel>
+													<TagCloseButton onClick={(e) => removeTag(e, index)} />
+												</Tag>
+											)
+										})
+									}
+								</div>
+							</div>
+						</Stack> */}
+						<Button colorScheme='green' size='md' onClick={saveProfile}>
+							Salvar
+						</Button>
+					</section>
+
+					{/* <section className={styles.formWrapper}>
 						<div>
 							<form>
 								<div className={styles.section}>
@@ -217,7 +349,6 @@ export default function Dashboard() {
 											onChange={(e) => {
 												if (!profile.hasOwnProperty("job")) {
 													Object.assign(profile, { ...profile, job: e.target.value })
-													console.log('profile: ', profile);
 
 												} else {
 													setProfile({ ...profile, job: e.target.value })
@@ -233,10 +364,7 @@ export default function Dashboard() {
 											value={profile.description || ""}
 										/>
 
-										{/* <Button colorScheme='green' size='md'>
-												Salvar
-											</Button> */}
-										<Divider />
+
 										<div className={styles.tags}>
 											<div className={styles.groupAddTag}>
 												<Heading size="md">Palavras chave</Heading>
@@ -272,6 +400,9 @@ export default function Dashboard() {
 											</div>
 										</div>
 									</Stack>
+									<Button colorScheme='green' size='md' onClick={saveProfile}>
+										Salvar
+									</Button>
 								</div>
 
 								<Divider />
@@ -282,15 +413,12 @@ export default function Dashboard() {
 										<Input variant="filled" placeholder="Usuário" value={user.name || ''} onChange={(e) => setUser({ ...user, name: e.target.value })} />
 										<Input variant="filled" placeholder="Usuário" value={user.username || ''} onChange={(e) => setUser({ ...user, username: e.target.value })} />
 										<Input variant="filled" placeholder="E-mail" value={user.email || ''} onChange={(e) => setUser({ ...user, email: e.target.value })} />
-										{/* <Input variant="filled" placeholder="Nova senha" value={''} /> */}
-										{/* <Button colorScheme='green' size='md'>
-											Salvar
-										</Button> */}
 									</Stack>
 								</div>
 							</form>
 						</div>
-					</section>
+					</section> */}
+
 					<small>https://github.com/mlasa/front/</small>
 				</div>
 
