@@ -79,23 +79,24 @@ export async function getStaticProps() {
 		const data = await response.json()
 
 		if (data[0]) {
-			console.log("Entrei nesse");
 			return {
 				props: {
 					profile: data[0]
 				},
-				/* revalidate: 60 * 60 * 24 */
+				/* revalidate: 60 * 60 * 24 */ /* 24 em 24 horas - 1 vez por dia*/
+				revalidate: 60 * 60 * 6 /* 6 em 6 horas*/
 			}
 		}
 
 	} catch (error) {
-		console.log("Deu boa não: \n", error, '\n');
+		console.log("Erro: \n", error, '\n');
 
 		return {
 			props: {
 				notFound: true
 			},
-			/* revalidate: 60 * 60 * 24 */
+			/* revalidate: 60 * 60 * 24 */ /* 24 em 24 horas - 1 vez por dia*/
+			revalidate: 60 * 60 * 6 /* 6 em 6 horas*/
 		}
 	}
 

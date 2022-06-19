@@ -55,6 +55,12 @@ export default function Dashboard() {
 	const toast = useToast();
 	const [errorNewTag, setErrorNewTag] = useState("");
 	const [allSaved, setAllSaved] = useState(true);
+	const isFirstRender = useRef(true);
+	const isFirstRenderUser = useRef(true);
+	const gotallData = useRef(false);
+	const gotallDataUser = useRef(false);
+	const [isButtonSaveProfileEnabled, setIsButtonSaveProfileEnabled] = useState(false);
+	const [isButtonSaveUserEnabled, setIsButtonSaveUserEnabled] = useState(false);
 
 	function logOut(): void {
 		Cookie.remove('@mlasaPortfolio')
@@ -109,6 +115,7 @@ export default function Dashboard() {
 		api.put(`/profile/${profile._id}`, body, config)
 			.then(response => {
 				setAllSaved(true);
+				setIsButtonSaveProfileEnabled(false);
 
 				toast({
 					title: "Perfil atualizado!",
@@ -133,6 +140,48 @@ export default function Dashboard() {
 			})
 	}
 
+	function saveUser() {
+		const { token } = JSON.parse(Cookie.get("@mlasaPortfolio"));
+
+		const config = {
+			headers: { authorization: `Bearer ${token}` }
+		};
+
+
+		const body = {
+			username: user.username,
+			name: user.name,
+		}
+
+		api.put(`/user/${user._id}`, body, config)
+			.then(response => {
+				console.log('response: ', response);
+				setAllSaved(true);
+				setIsButtonSaveUserEnabled(false);
+
+				toast({
+					title: "Conta  atualizada!",
+					status: "success",
+					duration: 9000,
+					isClosable: true,
+				});
+			})
+			.catch(error => {
+				console.log("Error: ", error);
+
+
+				toast({
+					title: (error.response && error.response.data.message) ?
+						error.response.data.errorMessage
+						:
+						"Não foi possível atualizar a conta...",
+					status: "error",
+					duration: 9000,
+					isClosable: true,
+				})
+			})
+	}
+
 
 	// Will check if user is already logged in by client side
 	useEffect(() => {
@@ -147,15 +196,45 @@ export default function Dashboard() {
 
 		getUser().then(response => {
 			response && setProfile(response[0]);
+			setAllSaved(true);
 		});
 
 
 	}, []);
 
 	useEffect(() => {
-		console.log("informações alteradas!")
-		setAllSaved(false);
+		if (profile.name) {
+			if (isFirstRender.current) {
+				isFirstRender.current = false;
+				gotallData.current = true;
+				return;
+			}
+			else {
+				setAllSaved(false);
+				setIsButtonSaveProfileEnabled(true);
+			}
+		} else if (!isFirstRender.current && gotallData.current) {
+			setAllSaved(false);
+			setIsButtonSaveProfileEnabled(true);
+		}
 	}, [profile.name, profile.description, profile?.job, profile.tags])
+
+	useEffect(() => {
+		if (user.name) {
+			if (isFirstRenderUser.current) {
+				isFirstRenderUser.current = false;
+				gotallDataUser.current = true;
+				return;
+			}
+			else {
+				setAllSaved(false);
+				setIsButtonSaveUserEnabled(true);
+			}
+		} else if (!isFirstRenderUser.current && gotallDataUser.current) {
+			setAllSaved(false);
+			setIsButtonSaveUserEnabled(true);
+		}
+	}, [user.name, user.username])
 
 	return (
 		<>
@@ -226,9 +305,19 @@ export default function Dashboard() {
 							<Heading size="lg" className={styles.pageTitle}>Edição</Heading>
 
 							<InputGroup size="sm" className={styles.inputGroupProfile}>
-								<Heading size="md">Informações da home</Heading>
-								<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
-								<Input variant="filled" placeholder="Cargo"
+								<Heading size="md">Informações do perfil profissional</Heading>
+								<Input
+									focusBorderColor="#dd6b20"
+									_focus={{
+										background: '#fff',
+									}}
+									variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
+								<Input
+									focusBorderColor="#dd6b20"
+									_focus={{
+										background: '#fff',
+									}}
+									variant="filled" placeholder="Cargo"
 									value={profile.job || ""}
 									onChange={(e) => {
 										if (!profile.hasOwnProperty("job")) {
@@ -241,6 +330,10 @@ export default function Dashboard() {
 									}}
 								/>
 								<Textarea
+									focusBorderColor="#dd6b20"
+									_focus={{
+										background: '#fff',
+									}}
 									variant="filled"
 									placeholder='Descrição'
 									size='sm'
@@ -283,159 +376,65 @@ export default function Dashboard() {
 									}
 								</div>
 							</div>
-							{/* <Stack spacing={2}>
-								<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
-								<Input variant="filled" placeholder="Cargo"
-									value={profile.job || ""}
-									onChange={(e) => {
-										if (!profile.hasOwnProperty("job")) {
-											Object.assign(profile, { ...profile, job: e.target.value })
+							{
+								isButtonSaveProfileEnabled ?
+									<Button colorScheme='green' size='md' onClick={saveProfile}>
+										Salvar perfil profissional
+									</Button>
+									:
+									<Button colorScheme='green' size='md' disabled>
+										Dados do perfil profissional estão salvos
+									</Button>
+							}
+						</section>
 
-										} else {
-											setProfile({ ...profile, job: e.target.value })
-										}
+						<section className={styles.groupUserInfos}>
+							<Heading size="md">Dados da conta</Heading>
+							<small>As atualizações dessa seção podem levar 1 dia para estarem disponíveis.</small>
+							<Input
+								focusBorderColor="#dd6b20"
+								_focus={{
+									background: '#fff',
+								}}
+								variant="filled" placeholder="Usuário" value={user.name || ''} onChange={(e) => setUser({ ...user, name: e.target.value })}
+							/>
+							<Input
+								focusBorderColor="#dd6b20"
+								_focus={{
+									background: '#fff',
+								}}
+								variant="filled" placeholder="Usuário" value={user.username || ''} onChange={(e) => setUser({ ...user, username: e.target.value })}
+							/>
+							<Input
+								focusBorderColor="#dd6b20"
+								_focus={{
+									background: '#fff',
+								}}
+								disabled
+								variant="filled" placeholder="E-mail" value={user.email || ''} onChange={(e) => setUser({ ...user, email: e.target.value })}
+							/>
 
-									}}
-								/>
-								<Textarea
-									variant="filled"
-									placeholder='Descrição'
-									size='sm'
-									onChange={(e) => setProfile({ ...profile, description: e.target.value })}
-									value={profile.description || ""}
-								/>
-
-
-								<div className={styles.tags}>
-									<div className={styles.groupAddTag}>
-										<Heading size="md">Palavras chave</Heading>
-										<Button
-											colorScheme='facebook'
-											variant='solid'
-											size="md"
-											ref={btnRef}
-											onClick={onOpen}
-										>
-											Adicionar
-										</Button>
-									</div>
-									<div className={styles.wrappertags}>
-										{
-											profile.tags &&
-											profile.tags.map((tag, index) => {
-												return (
-													<Tag
-														className={styles.tag}
-														size="sm"
-														key={index}
-														borderRadius='full'
-														variant='solid'
-														colorScheme='red'
-													>
-														<TagLabel>{tag}</TagLabel>
-														<TagCloseButton onClick={(e) => removeTag(e, index)} />
-													</Tag>
-												)
-											})
-										}
-									</div>
-								</div>
-							</Stack> */}
-							<Button colorScheme='green' size='md' onClick={saveProfile}>
-								Salvar
-							</Button>
+							{
+								isButtonSaveUserEnabled ?
+									<Button colorScheme='green' size='md' onClick={saveUser}>
+										Salvar conta
+									</Button>
+									:
+									<Button colorScheme='green' size='md' disabled>
+										Dados da conta estão salvos
+									</Button>
+							}
 						</section>
 
 						<footer className={styles.footer}>
 							<small>
 								<FaGithub />
-								<a href="https://github.com/mlasa/front/">Repositório do projeto</a>
+								<a href="https://github.com/mlasa/marcella">Repositório do projeto</a>
 							</small>
 						</footer>
 					</div>
 
 
-					{/* <section className={styles.formWrapper}>
-						<div>
-							<form>
-								<div className={styles.section}>
-									<Heading size="md">Informações da home</Heading>
-									<Stack spacing={2}>
-										<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
-										<Input variant="filled" placeholder="Cargo"
-											value={profile.job || ""}
-											onChange={(e) => {
-												if (!profile.hasOwnProperty("job")) {
-													Object.assign(profile, { ...profile, job: e.target.value })
-
-												} else {
-													setProfile({ ...profile, job: e.target.value })
-												}
-
-											}}
-										/>
-										<Textarea
-											variant="filled"
-											placeholder='Descrição'
-											size='sm'
-											onChange={(e) => setProfile({ ...profile, description: e.target.value })}
-											value={profile.description || ""}
-										/>
-
-
-										<div className={styles.tags}>
-											<div className={styles.groupAddTag}>
-												<Heading size="md">Palavras chave</Heading>
-												<Button
-													colorScheme='facebook'
-													variant='solid'
-													size="md"
-													ref={btnRef}
-													onClick={onOpen}
-												>
-													Adicionar
-												</Button>
-											</div>
-											<div className={styles.wrappertags}>
-												{
-													profile.tags &&
-													profile.tags.map((tag, index) => {
-														return (
-															<Tag
-																className={styles.tag}
-																size="sm"
-																key={index}
-																borderRadius='full'
-																variant='solid'
-																colorScheme='red'
-															>
-																<TagLabel>{tag}</TagLabel>
-																<TagCloseButton onClick={(e) => removeTag(e, index)} />
-															</Tag>
-														)
-													})
-												}
-											</div>
-										</div>
-									</Stack>
-									<Button colorScheme='green' size='md' onClick={saveProfile}>
-										Salvar
-									</Button>
-								</div>
-
-								<Divider />
-
-								<div className={styles.section}>
-									<Heading size="md">Dados de usuário</Heading>
-									<Stack spacing={2}>
-										<Input variant="filled" placeholder="Usuário" value={user.name || ''} onChange={(e) => setUser({ ...user, name: e.target.value })} />
-										<Input variant="filled" placeholder="Usuário" value={user.username || ''} onChange={(e) => setUser({ ...user, username: e.target.value })} />
-										<Input variant="filled" placeholder="E-mail" value={user.email || ''} onChange={(e) => setUser({ ...user, email: e.target.value })} />
-									</Stack>
-								</div>
-							</form>
-						</div>
-					</section> */}
 				</div>
 
 			</div >
