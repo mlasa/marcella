@@ -10,7 +10,12 @@
 	--background: #1E2326;
 	--black-850: #080808;
 	
-	--green: #72dfd0;
+	--green: #34c35f;
+	--green-100: #2ca751;
+
+	--orange: #dd6b20;
+
+	--yellow: #dd9f4e;
 }
 
 *{
@@ -18,6 +23,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Space Grotesk', sans-serif;
+  font-size: 400;
 }
 @media(max-width: 1080px){
   html{

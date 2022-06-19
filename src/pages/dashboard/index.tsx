@@ -9,9 +9,7 @@ import {
 	ListItem,
 	Input,
 	Textarea,
-	Stack,
 	Heading,
-	Divider,
 	useDisclosure,
 	Modal,
 	ModalOverlay,
@@ -26,6 +24,8 @@ import {
 	TagCloseButton,
 	InputGroup
 } from "@chakra-ui/react";
+
+import { FaGithub } from 'react-icons/fa'
 
 import api from "../../services/api";
 import styles from './styles.module.scss';
@@ -50,11 +50,11 @@ export default function Dashboard() {
 	const [user, setUser] = useState<IUser>({} as IUser);
 	const [profile, setProfile] = useState<IProfile>({} as IProfile);
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [scrollBehavior, setScrollBehavior] = useState('inside');
 	const btnRef = useRef(null);
 	const [newTag, setNewTag] = useState("");
 	const toast = useToast();
 	const [errorNewTag, setErrorNewTag] = useState("");
+	const [allSaved, setAllSaved] = useState(true);
 
 	function logOut(): void {
 		Cookie.remove('@mlasaPortfolio')
@@ -108,7 +108,7 @@ export default function Dashboard() {
 
 		api.put(`/profile/${profile._id}`, body, config)
 			.then(response => {
-				console.log('response: \n', response);
+				setAllSaved(true);
 
 				toast({
 					title: "Perfil atualizado!",
@@ -150,7 +150,12 @@ export default function Dashboard() {
 		});
 
 
-	}, [])
+	}, []);
+
+	useEffect(() => {
+		console.log("informações alteradas!")
+		setAllSaved(false);
+	}, [profile.name, profile.description, profile?.job, profile.tags])
 
 	return (
 		<>
@@ -166,7 +171,6 @@ export default function Dashboard() {
 				finalFocusRef={btnRef}
 				isOpen={isOpen}
 				scrollBehavior="inside"
-			//scrollBehavior={scrollBehavior}
 			>
 				<ModalOverlay />
 				<ModalContent>
@@ -213,89 +217,37 @@ export default function Dashboard() {
 						</UnorderedList>
 					</section>
 
-					<section className={styles.groupProfile}>
-						<Heading size="lg" className={styles.pageTitle}>Edição</Heading>
+					<div className={styles.content}>
+						{
+							!allSaved &&
+							<Heading size="sm" className={styles.saveAlert}>Informações foram alteradas e ainda não estão salvas!</Heading>
+						}
+						<section className={styles.groupProfile}>
+							<Heading size="lg" className={styles.pageTitle}>Edição</Heading>
 
-						<InputGroup size="sm" className={styles.inputGroupProfile}>
-							<Heading size="md">Informações da home</Heading>
-							<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
-							<Input variant="filled" placeholder="Cargo"
-								value={profile.job || ""}
-								onChange={(e) => {
-									if (!profile.hasOwnProperty("job")) {
-										Object.assign(profile, { ...profile, job: e.target.value })
+							<InputGroup size="sm" className={styles.inputGroupProfile}>
+								<Heading size="md">Informações da home</Heading>
+								<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
+								<Input variant="filled" placeholder="Cargo"
+									value={profile.job || ""}
+									onChange={(e) => {
+										if (!profile.hasOwnProperty("job")) {
+											Object.assign(profile, { ...profile, job: e.target.value })
 
-									} else {
-										setProfile({ ...profile, job: e.target.value })
-									}
+										} else {
+											setProfile({ ...profile, job: e.target.value })
+										}
 
-								}}
-							/>
-							<Textarea
-								variant="filled"
-								placeholder='Descrição'
-								size='sm'
-								onChange={(e) => setProfile({ ...profile, description: e.target.value })}
-								value={profile.description || ""}
-							/>
-						</InputGroup>
-
-						<div className={styles.tags}>
-							<div className={styles.groupAddTag}>
-								<Heading size="md">Palavras chave</Heading>
-								<Button
-									colorScheme='facebook'
-									variant='solid'
-									size="md"
-									ref={btnRef}
-									onClick={onOpen}
-								>
-									Adicionar
-								</Button>
-							</div>
-							<div className={styles.wrappertags}>
-								{
-									profile.tags &&
-									profile.tags.map((tag, index) => {
-										return (
-											<Tag
-												className={styles.tag}
-												size="sm"
-												key={index}
-												borderRadius='full'
-												variant='solid'
-												colorScheme='orange'
-											>
-												<TagLabel>{tag}</TagLabel>
-												<TagCloseButton onClick={(e) => removeTag(e, index)} />
-											</Tag>
-										)
-									})
-								}
-							</div>
-						</div>
-						{/* <Stack spacing={2}>
-							<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
-							<Input variant="filled" placeholder="Cargo"
-								value={profile.job || ""}
-								onChange={(e) => {
-									if (!profile.hasOwnProperty("job")) {
-										Object.assign(profile, { ...profile, job: e.target.value })
-
-									} else {
-										setProfile({ ...profile, job: e.target.value })
-									}
-
-								}}
-							/>
-							<Textarea
-								variant="filled"
-								placeholder='Descrição'
-								size='sm'
-								onChange={(e) => setProfile({ ...profile, description: e.target.value })}
-								value={profile.description || ""}
-							/>
-
+									}}
+								/>
+								<Textarea
+									variant="filled"
+									placeholder='Descrição'
+									size='sm'
+									onChange={(e) => setProfile({ ...profile, description: e.target.value })}
+									value={profile.description || ""}
+								/>
+							</InputGroup>
 
 							<div className={styles.tags}>
 								<div className={styles.groupAddTag}>
@@ -321,7 +273,7 @@ export default function Dashboard() {
 													key={index}
 													borderRadius='full'
 													variant='solid'
-													colorScheme='red'
+													colorScheme='orange'
 												>
 													<TagLabel>{tag}</TagLabel>
 													<TagCloseButton onClick={(e) => removeTag(e, index)} />
@@ -331,11 +283,77 @@ export default function Dashboard() {
 									}
 								</div>
 							</div>
-						</Stack> */}
-						<Button colorScheme='green' size='md' onClick={saveProfile}>
-							Salvar
-						</Button>
-					</section>
+							{/* <Stack spacing={2}>
+								<Input variant="filled" placeholder="Nome" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
+								<Input variant="filled" placeholder="Cargo"
+									value={profile.job || ""}
+									onChange={(e) => {
+										if (!profile.hasOwnProperty("job")) {
+											Object.assign(profile, { ...profile, job: e.target.value })
+
+										} else {
+											setProfile({ ...profile, job: e.target.value })
+										}
+
+									}}
+								/>
+								<Textarea
+									variant="filled"
+									placeholder='Descrição'
+									size='sm'
+									onChange={(e) => setProfile({ ...profile, description: e.target.value })}
+									value={profile.description || ""}
+								/>
+
+
+								<div className={styles.tags}>
+									<div className={styles.groupAddTag}>
+										<Heading size="md">Palavras chave</Heading>
+										<Button
+											colorScheme='facebook'
+											variant='solid'
+											size="md"
+											ref={btnRef}
+											onClick={onOpen}
+										>
+											Adicionar
+										</Button>
+									</div>
+									<div className={styles.wrappertags}>
+										{
+											profile.tags &&
+											profile.tags.map((tag, index) => {
+												return (
+													<Tag
+														className={styles.tag}
+														size="sm"
+														key={index}
+														borderRadius='full'
+														variant='solid'
+														colorScheme='red'
+													>
+														<TagLabel>{tag}</TagLabel>
+														<TagCloseButton onClick={(e) => removeTag(e, index)} />
+													</Tag>
+												)
+											})
+										}
+									</div>
+								</div>
+							</Stack> */}
+							<Button colorScheme='green' size='md' onClick={saveProfile}>
+								Salvar
+							</Button>
+						</section>
+
+						<footer className={styles.footer}>
+							<small>
+								<FaGithub />
+								<a href="https://github.com/mlasa/front/">Repositório do projeto</a>
+							</small>
+						</footer>
+					</div>
+
 
 					{/* <section className={styles.formWrapper}>
 						<div>
@@ -418,8 +436,6 @@ export default function Dashboard() {
 							</form>
 						</div>
 					</section> */}
-
-					<small>https://github.com/mlasa/front/</small>
 				</div>
 
 			</div >
