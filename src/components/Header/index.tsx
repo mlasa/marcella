@@ -57,7 +57,7 @@ export default function Header(props) {
 				${props.class}
 			`}
 		>
-		{/* 	{
+			{/* 	{
 				!isLargerThan750px &&
 				<div className={styles.menuHamburger}>
 					<Menu isLazy>
@@ -119,10 +119,10 @@ export default function Header(props) {
 			>
 				<PopoverTrigger>
 					<Button
-						borderColor="#f8a6f8"
+						borderColor="var(--orange)"
 						variant="outline"
 						_hover={{
-							background: "#f8a6f8",
+							background: "var(--orange)",
 						}}
 					>
 						{translater("contact")}

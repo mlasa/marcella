@@ -1,25 +1,36 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
-import { useMediaQuery } from "@chakra-ui/react"
+import { useMediaQuery, Tag } from "@chakra-ui/react"
 
 import styles from '../styles/home.module.scss'
 import Header from '../components/Header'
 import { Error } from '../components/Error'
 import { translater } from '../components/Translater'
 
+
 export default function Home({ profile }) {
-	const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
-	const [isWideScreen, setIsWideScreen] = useState(false);
+	/*const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
+	const [isWideScreen, setIsWideScreen] = useState(false);*/
 
 	//useEffect(() => setIsWideScreen(isLargerThan750px), [isLargerThan750px])
+
+	let language;
+	let isLanguagePTBR = (language && language == "portuguese") ? true : false;
+
+	if (typeof window !== 'undefined') {
+		language = localStorage.getItem("@marcella-homepage/language");
+		isLanguagePTBR = (language && language == "portuguese") ? true : false;
+	} else {
+		console.log('we are running on the server');
+	}
 
 	return (
 		<>
 			{profile ?
 				<div className={`${styles.containerHome}`}>
 					<Head>
-						<title> Marcella Amorim S.A. - Homepage</title>
+						<title> {profile.name} - Homepage</title>
 					</Head>
 					<Header class={styles.header} />
 
@@ -35,8 +46,13 @@ export default function Home({ profile }) {
 
 							<header className={styles.headerMe}>
 								<span>
-									<h1>{profile.name}</h1>
-									<p>Fullstack developer - Cesla ( WS Solution )</p>
+									<h1 className={styles.myName}>{profile.name}</h1>
+									<p> {profile.job}</p>
+									<div className={styles.tagsSkills}>
+										{
+											profile.tags.map(tag => <Tag index={tag} className={styles.tagSkill}>{tag}</Tag>)
+										}
+									</div>
 								</span>
 								<img src="me1.jpeg" alt="Marcella" width="200px" style={{ borderRadius: "100px" }} />
 							</header>
@@ -44,13 +60,18 @@ export default function Home({ profile }) {
 							<div className={styles.more}>
 								<section>
 									{/* <h1>{translater("work")}</h1> */}
-									<p>{translater("more-me")}</p>
+									{
+										isLanguagePTBR ?
+											<p>{profile.description}</p>
+											:
+											<p>{translater("more-me")}</p>
+									}
 								</section>
 
-								<section>
+								{/* <section>
 									<h1 className={styles.titleSection}>{translater("work")}</h1>
 									<p>{translater("job")}</p>
-								</section>
+								</section> */}
 
 								<section>
 									<h1 className={styles.titleSection}>{translater("background")}</h1>
