@@ -47,7 +47,14 @@ export default function Home({ profile }) {
 							<header className={styles.headerMe}>
 								<span>
 									<h1 className={styles.myName}>{profile.name}</h1>
-									<p> {profile.job}</p>
+									<p>
+										{
+											isLanguagePTBR ?
+												<p>{profile.job}</p>
+												:
+												<p>{translater("job")}</p>
+										}
+									</p>
 									<div className={styles.tagsSkills}>
 										{
 											profile.tags.map(tag => <Tag index={tag} className={styles.tagSkill}>{tag}</Tag>)
