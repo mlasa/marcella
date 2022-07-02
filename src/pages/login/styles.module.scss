@@ -1,6 +1,6 @@
 .loginContainer{
     height:100vh;
-    background: linear-gradient(90deg, rgba(109,238,164,1) 35%, rgba(167,127,233,1) 100%);
+    background: var(--dark-blue);
 
 
     font-family: 'Merriweather Sans', sans-serif;
@@ -13,11 +13,17 @@
 }
 
 .sectionLogin{
-    padding:2rem;
+    padding:1.5rem;
     border-radius: 5px;
-    width: 100%;
-    background: darken( #a87fe9a2, 50%);
+    width: 400px;
+    //background:var(--dark-blue);
     transition: 0.3s ease-in-out;
+
+	h2{
+		font-family: 'Bebas Neue', cursive;
+		color:  var(--orange);
+		letter-spacing: 2px;
+	}
         
     input{
         color:white;
@@ -39,4 +45,9 @@
 
     display:grid;
     align-content:center;
+
+	button{
+		margin-top: 1rem;
+		background: var(--orange);
+	}
 }

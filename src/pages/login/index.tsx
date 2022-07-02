@@ -82,7 +82,7 @@ export default function Login() {
 			<div className={styles.loginContainer}>
 				<section className={`${styles.sectionLogin}`}>
 
-					<Heading size="lg">Acesso ao painel</Heading>
+					<Heading size="lg">Admin</Heading>
 					<div className={styles.boxLogin}>
 						<Input
 							value={access}
