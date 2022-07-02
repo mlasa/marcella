@@ -66,7 +66,6 @@ export default function Home({ profile }) {
 
 							<div className={styles.more}>
 								<section>
-									{/* <h1>{translater("work")}</h1> */}
 									{
 										isLanguagePTBR ?
 											<p>{profile.description}</p>
@@ -74,11 +73,6 @@ export default function Home({ profile }) {
 											<p>{translater("more-me")}</p>
 									}
 								</section>
-
-								{/* <section>
-									<h1 className={styles.titleSection}>{translater("work")}</h1>
-									<p>{translater("job")}</p>
-								</section> */}
 
 								<section>
 									<h1 className={styles.titleSection}>{translater("background")}</h1>

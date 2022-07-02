@@ -155,6 +155,7 @@
 	text-align: center;
 	padding: .5rem;
 	border-radius: 5px;
+	margin: 10px 0;
 }
 
 .footer{
@@ -210,6 +211,69 @@
 
 		&:hover{
 			background: var(--green-100);
+		}
+	}
+}
+
+.textos{
+	p{
+		color: var(--white);
+	}
+	h2{
+		color: var(--orange);
+		font-family: 'Caveat', cursive;
+		font-size: 2.2rem;
+		font-weight: 400;
+
+		margin: 1rem 0 0 0;
+	}
+
+	textarea{
+		margin-top: 5px;
+	}
+
+	.experiences{
+		padding: 1rem 0;
+	}
+	.wrapperExperiences{
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: start;
+		justify-content: center;
+	}
+	.experience{
+		margin: 2px 0;
+		padding: 1rem;
+		width: 100%;
+		background: var(--dark-blue-100);
+		border-radius: 5px;
+
+		div{
+			margin-right: auto;
+		}
+	}
+	
+	.groupAddExperiences{
+		width: 100%;
+		display: flex;
+		align-items: center;
+	
+		h2{
+			color: var(--orange);
+			font-family: 'Caveat', cursive;
+			font-size: 2rem;
+			font-weight: 400;
+		}
+	
+		button{
+			margin-left: 1rem;
+			width: 100px;
+			background: #04b65d;
+			&:hover{
+				background: var(--green-100);
+			}
 		}
 	}
 }

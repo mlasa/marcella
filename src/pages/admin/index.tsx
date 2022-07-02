@@ -22,7 +22,8 @@ import {
 	Tag,
 	TagLabel,
 	TagCloseButton,
-	InputGroup
+	InputGroup,
+	Select
 } from "@chakra-ui/react";
 
 import { FaGithub } from 'react-icons/fa'
@@ -44,16 +45,22 @@ interface IProfile {
 	name: string;
 	job?: string;
 }
+interface INewJob {
+	job: string;
+	description: string;
+}
 
 export default function Dashboard() {
 	const router = useRouter();
 	const [user, setUser] = useState<IUser>({} as IUser);
 	const [profile, setProfile] = useState<IProfile>({} as IProfile);
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const { isOpen: isOpenXP, onOpen: onOpenXP, onClose: onCloseXP } = useDisclosure();
 	const btnRef = useRef(null);
+	const btnExperienceRef = useRef(null);
 	const [newTag, setNewTag] = useState("");
 	const toast = useToast();
-	const [errorNewTag, setErrorNewTag] = useState("");
+	const [error, setError] = useState("");
 	const [allSaved, setAllSaved] = useState(true);
 	const isFirstRender = useRef(true);
 	const isFirstRenderUser = useRef(true);
@@ -61,6 +68,10 @@ export default function Dashboard() {
 	const gotallDataUser = useRef(false);
 	const [isButtonSaveProfileEnabled, setIsButtonSaveProfileEnabled] = useState(false);
 	const [isButtonSaveUserEnabled, setIsButtonSaveUserEnabled] = useState(false);
+	const [language, setLanguage] = useState("portuguese");
+	const [interests, setInterests] = useState("");
+	const [experiences, setExperiences] = useState([]);
+	const [newXP, setNewXP] = useState<INewJob>({} as INewJob);
 
 	function logOut(): void {
 		Cookie.remove('@mlasaPortfolio')
@@ -84,11 +95,11 @@ export default function Dashboard() {
 
 	function saveNewTag(newTag: string) {
 		if (!newTag) {
-			setErrorNewTag("Preencha o campo");
+			setError("Preencha o campo");
 			return;
 		}
 		else {
-			setErrorNewTag("");
+			setError("");
 		}
 
 		setProfile({ ...profile, tags: [...profile.tags, newTag] });
@@ -182,6 +193,26 @@ export default function Dashboard() {
 			})
 	}
 
+	function saveNewExperience(experience) {
+
+		if (!experience.job || !experience.description) {
+			setError("Os 2 campos precisam ser preenchidos.");
+			return;
+		}
+		else {
+			setError("");
+		}
+
+		setExperiences([...experiences, experience]);
+		setNewXP({} as INewJob);
+	}
+	function removeExperience(e, indexTag) {
+		e.preventDefault()
+
+		const newArray = experiences.filter((tag, index) => index !== indexTag)
+		setExperiences(newArray);
+	}
+
 
 	// Will check if user is already logged in by client side
 	useEffect(() => {
@@ -217,7 +248,7 @@ export default function Dashboard() {
 			setAllSaved(false);
 			setIsButtonSaveProfileEnabled(true);
 		}
-	}, [profile.name, profile.description, profile?.job, profile.tags])
+	}, [profile.name, profile.description, profile?.job, profile.tags, interests, experiences])
 
 	useEffect(() => {
 		if (user.name) {
@@ -261,17 +292,63 @@ export default function Dashboard() {
 							placeholder="ex.: Pacote Office"
 							value={newTag || ""}
 							onChange={(e) => {
-								if (errorNewTag && e.target.value) {
-									setErrorNewTag("");
+								if (error && e.target.value) {
+									setError("");
 								}
 
 								setNewTag(e.target.value);
 							}}
 						/>
-						<small className={styles.errorStyle}>{errorNewTag}</small>
+						<small className={styles.errorStyle}>{error}</small>
 					</ModalBody>
 					<ModalFooter>
 						<Button size="sm" colorScheme="green" onClick={() => saveNewTag(newTag)}>Adicionar</Button>
+					</ModalFooter>
+				</ModalContent>
+			</Modal>
+
+			<Modal
+				onClose={() => {
+					onCloseXP();
+					setNewXP({} as INewJob);
+				}}
+				finalFocusRef={btnExperienceRef}
+				isOpen={isOpenXP}
+				scrollBehavior="inside"
+			>
+				<ModalOverlay />
+				<ModalContent>
+					<ModalHeader>Nova experiência</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody>
+						<Input
+							variant="filled"
+							placeholder="Cargo"
+							value={newXP.job || ""}
+							onChange={(e) => {
+								if (error && e.target.value) {
+									setError("");
+								}
+
+								setNewXP({ ...newXP, job: e.target.value });
+							}}
+						/>
+						<Input
+							variant="filled"
+							placeholder="Breve descrição"
+							value={newXP.description || ""}
+							onChange={(e) => {
+								if (error && e.target.value) {
+									setError("");
+								}
+
+								setNewXP({ ...newXP, description: e.target.value });
+							}}
+						/>
+						<small className={styles.errorStyle}>{error}</small>
+					</ModalBody>
+					<ModalFooter>
+						<Button size="sm" colorScheme="green" onClick={() => saveNewExperience(newXP)}>Adicionar</Button>
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
@@ -346,7 +423,6 @@ export default function Dashboard() {
 								<div className={styles.groupAddTag}>
 									<Heading size="md">Palavras chave</Heading>
 									<Button
-										colorScheme='facebook'
 										variant='solid'
 										size="md"
 										ref={btnRef}
@@ -376,6 +452,76 @@ export default function Dashboard() {
 									}
 								</div>
 							</div>
+
+							<div className={styles.textos}>
+								<Heading size="md">Textos do perfil</Heading>
+								<p>Editar dados do perfil em:</p>
+								<Select placeholder='Idioma' variant='filled' color="black"
+									_hover={{
+										background: "white",
+									}}
+									_focus={{
+										background: '#fff',
+									}}
+									onChange={(e) => {
+										setLanguage(e.target.value);
+
+									}}
+									value={language}
+								>
+									<option value='english'>English</option>
+									<option value='portuguese'>Português</option>
+								</Select>
+								<Textarea
+									focusBorderColor="#dd6b20"
+									_focus={{
+										background: '#fff',
+									}}
+									variant="filled"
+									placeholder='Outros interesses'
+									size='sm'
+									onChange={(e) => setInterests(e.target.value)}
+									value={interests || ""}
+								/>
+
+								<div className={styles.experiences}>
+									<div className={styles.groupAddExperiences}>
+										<Heading size="md">Experiências</Heading>
+										<Button
+											variant='solid'
+											size="md"
+											ref={btnExperienceRef}
+											onClick={onOpenXP}
+										>
+											Adicionar
+										</Button>
+									</div>
+									<div className={styles.wrapperExperiences}>
+										{
+											experiences &&
+											experiences.map((experience, index) => {
+												return (
+													<Tag
+														className={styles.experience}
+														size="sm"
+														key={index}
+														borderRadius='full'
+														variant='solid'
+														colorScheme='orange'
+													>
+														<div>
+															<TagLabel><strong>{experience.job}</strong></TagLabel>
+															<p>{experience.description}</p>
+														</div>
+														<TagCloseButton onClick={(e) => removeExperience(e, index)} />
+													</Tag>
+												)
+											})
+										}
+									</div>
+								</div>
+							</div>
+
 							{
 								isButtonSaveProfileEnabled ?
 									<Button colorScheme='green' size='md' onClick={saveProfile}>
