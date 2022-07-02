@@ -57,7 +57,7 @@ export default function Home({ profile }) {
 									</p>
 									<div className={styles.tagsSkills}>
 										{
-											profile.tags.map(tag => <Tag index={tag} className={styles.tagSkill}>{tag}</Tag>)
+											profile.tags.map(tag => <Tag key={tag} className={styles.tagSkill}>{tag}</Tag>)
 										}
 									</div>
 								</span>
