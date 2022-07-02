@@ -120,7 +120,9 @@ export default function Dashboard() {
 			tags: profile.tags,
 			name: profile.name,
 			description: profile.description,
-			job: profile.job
+			job: profile.job,
+			experiences,
+			interests
 		}
 
 		api.put(`/profile/${profile._id}`, body, config)
