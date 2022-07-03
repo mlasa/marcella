@@ -75,31 +75,32 @@ export default function Home({ profile }) {
 									}
 								</section>
 
-								<section>
-									<h1 className={styles.titleSection}>{translater("background")}</h1>
-									{/* <p>{translater("background-text")}</p> */}
-									<div className={styles.wrapperExperiences}>
-										{
-											profile.experiences &&
-											profile.experiences.map((experience, index) => {
-												return (
-													<Tag
-														className={styles.experience}
-														size="sm"
-														key={index}
-														variant='outlined'
-													>
-														<div>
-															<TagLabel><strong>{experience.job}</strong></TagLabel>
-															<p>{experience.description}</p>
-														</div>
-													</Tag>
-												)
-											})
-										}
-									</div>
-
-								</section>
+								{(profile.experiences && profile.experiences.length) &&
+									<section>
+										<h1 className={styles.titleSection}>{translater("background")}</h1>
+										{/* <p>{translater("background-text")}</p> */}
+										<div className={styles.wrapperExperiences}>
+											{
+												profile.experiences &&
+												profile.experiences.map((experience, index) => {
+													return (
+														<Tag
+															className={styles.experience}
+															size="sm"
+															key={index}
+															variant='outlined'
+														>
+															<div>
+																<TagLabel><strong>{experience.job}</strong></TagLabel>
+																<p>{experience.description}</p>
+															</div>
+														</Tag>
+													)
+												})
+											}
+										</div>
+									</section>
+								}
 
 								<section>
 									<h1 className={styles.titleSection}>{translater("i-like")}</h1>
