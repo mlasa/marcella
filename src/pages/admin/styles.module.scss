@@ -3,6 +3,8 @@
     min-height:100vh;
     padding:1rem;
 	padding-bottom:0;
+	font-family: 'Istok Web', sans-serif;
+	font-size: 1.5rem;
 }
 .header{
     padding:1rem;
@@ -11,7 +13,8 @@
     justify-content: space-between;
     h1{
 		color: var(--orange);
-		font-family: 'Caveat', cursive;
+		font-family: 'Istok Web', sans-serif;
+		font-weight: 700;
 		font-size: 2rem;
     }
 }
@@ -31,6 +34,7 @@
 
 .listSection{
     padding:1rem;
+	font-size: 1rem;
 }
 .list{
     color:#fff;
@@ -51,6 +55,12 @@
         }
     
     }
+}
+
+@media (max-width: 1000px) {
+	.wrapperContent{
+		flex-direction: column;
+	}
 }
 
 .tags{
@@ -76,9 +86,10 @@
 
 	h2{
 		color: var(--orange);
-		font-family: 'Caveat', cursive;
-		font-size: 2rem;
-		font-weight: 400;
+		/* font-family: 'Caveat', cursive; */
+		font-family: 'Istok Web', sans-serif;
+		font-size: 1.5rem;
+		font-weight: 700;
     }
 
 	button{
@@ -123,9 +134,10 @@
 
 		h2{
 			color: var(--orange);
-			font-family: 'Caveat', cursive;
-			font-size: 2.2rem;
-			font-weight: 400;
+			/* font-family: 'Caveat', cursive; */
+			font-family: 'Istok Web', sans-serif;
+			font-size: 1.5rem;
+			font-weight: 700;
 	
 			margin: 1rem 0;
 		}
@@ -193,9 +205,10 @@
 
 	h2{
 		color: var(--orange);
-		font-family: 'Caveat', cursive;
-		font-size: 2.2rem;
-		font-weight: 400;
+		/* font-family: 'Caveat', cursive; */
+		font-family: 'Istok Web', sans-serif;
+		font-size: 1.5rem;
+		font-weight: 700;
 
 		margin: 1rem 0 0 0;
 	}
@@ -203,6 +216,7 @@
 	small{
 		color: #fff;
 		margin: 1rem 0;
+		font-size: 1rem;
 	}
 
 	>button{
@@ -218,12 +232,14 @@
 .textos{
 	p{
 		color: var(--white);
+		font-size: 1rem;
 	}
 	h2{
 		color: var(--orange);
-		font-family: 'Caveat', cursive;
-		font-size: 2.2rem;
-		font-weight: 400;
+		/* font-family: 'Caveat', cursive; */
+		font-family: 'Istok Web', sans-serif;
+		font-size: 1.5rem;
+		font-weight: 700;
 
 		margin: 1rem 0 0 0;
 	}
@@ -252,6 +268,11 @@
 
 		div{
 			margin-right: auto;
+			font-size: .9rem;
+
+			p{
+				margin-top: 10px;
+			}
 		}
 	}
 	
@@ -262,9 +283,10 @@
 	
 		h2{
 			color: var(--orange);
-			font-family: 'Caveat', cursive;
-			font-size: 2rem;
-			font-weight: 400;
+			/* font-family: 'Caveat', cursive; */
+			font-family: 'Istok Web', sans-serif;
+			font-size: 1.5rem;
+			font-weight: 700;
 		}
 	
 		button{

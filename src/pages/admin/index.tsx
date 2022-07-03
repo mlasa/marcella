@@ -81,7 +81,6 @@ export default function Dashboard() {
 		Cookie.remove('@mlasaPortfolio')
 		router.push('/login')
 	}
-
 	async function getUser(): Promise<any> {
 		const responseRaw = await api({
 			url: "/profile",
@@ -89,14 +88,12 @@ export default function Dashboard() {
 		})
 		return responseRaw.data
 	}
-
 	function removeTag(e, indexTag) {
 		e.preventDefault()
 
 		const newArray = profile.tags.filter((tag, index) => index !== indexTag)
 		setProfile({ ...profile, tags: newArray });
 	}
-
 	function saveNewTag(newTag: string) {
 		if (!newTag) {
 			setError("Preencha o campo");
@@ -110,7 +107,6 @@ export default function Dashboard() {
 
 		setNewTag("");
 	}
-
 	function saveProfile() {
 
 		const storedInCookiesBrowser = JSON.parse(Cookie.get("@mlasaPortfolio"));
@@ -156,7 +152,6 @@ export default function Dashboard() {
 				})
 			})
 	}
-
 	function saveUser() {
 		const { token } = JSON.parse(Cookie.get("@mlasaPortfolio"));
 
@@ -198,7 +193,6 @@ export default function Dashboard() {
 				})
 			})
 	}
-
 	function saveNewExperience(experience) {
 
 		if (!experience.job || !experience.description) {
@@ -246,7 +240,7 @@ export default function Dashboard() {
 	}, []);
 
 	useEffect(() => {
-		if (profile.name) {
+		if (profile.name, interests, experiences) {
 			if (isFirstRender.current) {
 				isFirstRender.current = false;
 				gotallData.current = true;
@@ -282,7 +276,7 @@ export default function Dashboard() {
 	return (
 		<>
 			<Head>
-				<title> Marcella Dev | Dashboard</title>
+				<title> Marcella Dev | Admin</title>
 			</Head>
 
 			<Modal
