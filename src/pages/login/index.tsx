@@ -38,7 +38,7 @@ export default function Login() {
 
 				if (token && user) {
 					saveUserLogged(token, user)
-					router.push('/dashboard')
+					router.push('/admin')
 				}
 
 
@@ -70,7 +70,7 @@ export default function Login() {
 
 	useEffect(() => {
 		if (checkIfUserIsLogged())
-			router.push('/dashboard')
+			router.push('/admin')
 	}, [])
 
 	return (
