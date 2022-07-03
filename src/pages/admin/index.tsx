@@ -49,6 +49,10 @@ interface INewJob {
 	job: string;
 	description: string;
 }
+interface IInterests {
+	english: string;
+	portuguese: string;
+}
 
 export default function Dashboard() {
 	const router = useRouter();
@@ -69,7 +73,7 @@ export default function Dashboard() {
 	const [isButtonSaveProfileEnabled, setIsButtonSaveProfileEnabled] = useState(false);
 	const [isButtonSaveUserEnabled, setIsButtonSaveUserEnabled] = useState(false);
 	const [language, setLanguage] = useState("portuguese");
-	const [interests, setInterests] = useState("");
+	const [interests, setInterests] = useState<IInterests>({} as IInterests);
 	const [experiences, setExperiences] = useState([]);
 	const [newXP, setNewXP] = useState<INewJob>({} as INewJob);
 
@@ -228,7 +232,13 @@ export default function Dashboard() {
 		}
 
 		getUser().then(response => {
-			response && setProfile(response[0]);
+
+			if (response[0]) {
+				setProfile(response[0]);
+				setInterests(response[0].interests);
+				setExperiences(response[0].experiences)
+			}
+
 			setAllSaved(true);
 		});
 
@@ -482,8 +492,8 @@ export default function Dashboard() {
 									variant="filled"
 									placeholder='Outros interesses'
 									size='sm'
-									onChange={(e) => setInterests(e.target.value)}
-									value={interests || ""}
+									onChange={(e) => setInterests({ ...interests, [language]: e.target.value })}
+									value={interests[language] || ""}
 								/>
 
 								<div className={styles.experiences}>
