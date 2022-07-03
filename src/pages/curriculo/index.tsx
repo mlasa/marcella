@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
-import { useMediaQuery, Tag } from "@chakra-ui/react"
+import { useMediaQuery, Tag, TagLabel } from "@chakra-ui/react"
 
 import styles from './styles.module.scss'
 import Header from '../../components/Header'
@@ -10,6 +10,7 @@ import { translater } from '../../components/Translater'
 
 
 export default function Home({ profile }) {
+	console.log('profile: ', profile);
 	/*const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
 	const [isWideScreen, setIsWideScreen] = useState(false);*/
 
@@ -76,7 +77,28 @@ export default function Home({ profile }) {
 
 								<section>
 									<h1 className={styles.titleSection}>{translater("background")}</h1>
-									<p>{translater("background-text")}</p>
+									{/* <p>{translater("background-text")}</p> */}
+									<div className={styles.wrapperExperiences}>
+										{
+											profile.experiences &&
+											profile.experiences.map((experience, index) => {
+												return (
+													<Tag
+														className={styles.experience}
+														size="sm"
+														key={index}
+														variant='outlined'
+													>
+														<div>
+															<TagLabel><strong>{experience.job}</strong></TagLabel>
+															<p>{experience.description}</p>
+														</div>
+													</Tag>
+												)
+											})
+										}
+									</div>
+
 								</section>
 
 								<section>

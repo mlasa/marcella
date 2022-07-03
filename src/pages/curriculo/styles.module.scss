@@ -119,3 +119,29 @@
 		background: var(--green);
 	}
 }
+
+.wrapperExperiences{
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: start;
+	justify-content: center;
+}
+.experience{
+	margin: 2px 0;
+	padding: 1rem;
+	width: 100%;
+	border: 1px solid var(--orange);
+	border-radius: 5px;
+	
+	div{
+		color: #fff;
+		margin-right: auto;
+		font-size: .9rem;
+
+		p{
+			margin-top: 10px;
+		}
+	}
+}
