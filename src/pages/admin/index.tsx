@@ -23,8 +23,15 @@ import {
 	TagLabel,
 	TagCloseButton,
 	InputGroup,
-	Select
+	Select,
+	Menu,
+	MenuItem,
+	MenuButton,
+	MenuList,
+	IconButton
 } from "@chakra-ui/react";
+import { HamburgerIcon } from '@chakra-ui/icons'
+
 
 import { FaGithub } from 'react-icons/fa'
 
@@ -370,14 +377,24 @@ export default function Dashboard() {
 				</div>
 
 				<div className={styles.wrapperContent}>
-					<section className={styles.listSection}>
-						<UnorderedList className={styles.list}>
-							<ListItem>Editar informações do portfólio</ListItem>
-							<ListItem>
-								<Link href="/">Ver portfólio</Link>
-							</ListItem>
-						</UnorderedList>
-					</section>
+					<Menu>
+						<MenuButton
+							as={IconButton}
+							aria-label='Options'
+							icon={<HamburgerIcon />}
+							variant='outline'
+							style={{ background: "white" }}
+						/>
+						<MenuList>
+							<MenuItem>
+								Editar informações do portfólio
+							</MenuItem>
+							<MenuItem>
+								Ver portfólio
+							</MenuItem>
+
+						</MenuList>
+					</Menu>
 
 					<div className={styles.content}>
 						{

@@ -27,41 +27,19 @@
     padding:1rem;
 	padding-bottom:0;
     height: 90.9%;
+	font-size: 1.5rem;
     
     display: flex;
     flex-direction: row;
-}
+	position: relative;
 
-.listSection{
-    padding:1rem;
-	font-size: 1rem;
-}
-.list{
-    color:#fff;
-
-    li{
-        transition: all ease-in-out 0.2s;
-        &::marker{
-            color:#d6d6d6;
-            transition: all ease-in-out 0.2s;
-        }
-		&::marker{
-			font-size: 25px;
-		}
-        &:hover{
-            &::marker{
-                color:var(--orange);
-            }
-        }
-    
-    }
-}
-
-@media (max-width: 1000px) {
-	.wrapperContent{
-		flex-direction: column;
+	button:first-child{
+		position: absolute;
+		top: 0px;
+		left: 0px;
 	}
 }
+
 
 .tags{
 	padding: 1rem;
