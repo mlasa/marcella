@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
-import { useMediaQuery, Tag } from "@chakra-ui/react"
+import { useToast } from "@chakra-ui/react"
 
 import styles from '../styles/home.module.scss'
 import Header from '../components/Header'
@@ -10,6 +10,8 @@ import { translater } from '../components/Translater'
 
 
 export default function Home({ profile }) {
+	const toast = useToast()
+
 	/*const [isLargerThan750px] = useMediaQuery("(min-width: 750px)")
 	const [isWideScreen, setIsWideScreen] = useState(false);*/
 
@@ -25,68 +27,33 @@ export default function Home({ profile }) {
 		console.log('we are running on the server');
 	}
 
+	function copyToClipboard() {
+
+		navigator.clipboard.writeText('marcella.amorimsa@gmail.com')
+
+		toast({
+			title: "E-mail copiado para área de transferência! ",
+			status: "success",
+			duration: 2000,
+		})
+	}
+
 	return (
 		<>
 			{profile ?
-				<div className={`${styles.containerHome}`}>
-					<Head>
-						<title> {profile.name} - Homepage</title>
-					</Head>
-					<Header class={styles.header} />
-
-					<div className={styles.content} >
-						<div className={styles.contentWrapper}>
-							<span className={styles.tag}>
-								{translater("page-bein-updated")}
-							</span>
-							<span className={styles.tag}>
-								{translater("tag-introduce")}
-								<img src="flag-brazil.png" alt="Bandeira do Brasil" width="30px" style={{ margin: '0 .5rem' }} />
-							</span>
-
-							<header className={styles.headerMe}>
-								<span>
-									<h1 className={styles.myName}>{profile.name}</h1>
-									<p>
-										{
-											isLanguagePTBR ?
-												<p>{profile.job}</p>
-												:
-												<p>{translater("job")}</p>
-										}
-									</p>
-									<div className={styles.tagsSkills}>
-										{
-											profile.tags.map(tag => <Tag key={tag} className={styles.tagSkill}>{tag}</Tag>)
-										}
-									</div>
-								</span>
-								<img src="me1.jpeg" alt="Marcella" width="200px" style={{ borderRadius: "100px" }} />
-							</header>
-
-							<div className={styles.more}>
-								<section>
-									{
-										isLanguagePTBR ?
-											<p>{profile.description}</p>
-											:
-											<p>{translater("more-me")}</p>
-									}
-								</section>
-
-								<section>
-									<h1 className={styles.titleSection}>{translater("background")}</h1>
-									<p>{translater("background-text")}</p>
-								</section>
-
-								<section>
-									<h1 className={styles.titleSection}>{translater("i-like")}</h1>
-									<p>{translater("i-like-text")}</p>
-								</section>
-							</div>
+				<section className={`${styles.home} container`}>
+					<div className={styles.photo}>
+						<img src="me1.jpeg" alt="Marcella" width="250px" style={{ borderRadius: "100px" }} />
+					</div>
+					<div className={styles.introdution}>
+						<h2>Programadora</h2>
+						<h1>Marcella Amorim S.A.</h1>
+						<div className="cta-home-buttons">
+							<a href="https://www.linkedin.com/in/marcellaamorim/">LinkedIn</a>
+							<button onClick={() => copyToClipboard()}>Contato</button>
 						</div>
 					</div>
-				</div>
+				</section>
 				:
 				<Error title="Oh não 😔" message="Não foi possível recuperar os dados" />
 			}

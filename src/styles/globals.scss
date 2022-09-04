@@ -1,6 +1,5 @@
 
 :root{
-	
 	--white: #fff;
 	
 	--pink-100:#f8a6f8;
@@ -19,13 +18,21 @@
 	--orange: #dd6b20;
 
 	--yellow: #dd9f4e;
+
+	/*Novas cores*/
+	--blue-light-100:#4EE5FC;
+	--blue-light-150:#46cfe4;
+	--white-150:#ececec;
+}
+
+.container{
+	padding: 0 400px;
 }
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Istok Web', sans-serif;
   font-size: 400;
 }
 @media(max-width: 1080px){
