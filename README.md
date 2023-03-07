@@ -1,5 +1,6 @@
 Disponível em : http://marcella.vercel.app
 
+O estilo das páginas está muito diferente uma da outra, isso porque os planos mudaram e planeja-se fazer algo diferente do que está em código hoje
 
 ![Screenshot](marcella.png)
 ![Screenshot](edicao.png)
